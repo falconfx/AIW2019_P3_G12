@@ -1,0 +1,38 @@
+    <script type="text/javascript">
+      theGuardian.hide();
+      about.hide();
+      laVanguardia.hide();
+
+      function showStuff(element)  {
+
+        var laVanguardia = $('#LaVanguardia');
+        var theGuardian = $('#TheGuardian');
+        var about = $('#About');
+        if(element === "LaVanguardia"){
+          theGuardian.hide();
+          about.hide();
+          laVanguardia.show();
+        }else if(element === "TheGuardian"){
+          theGuardian.show();
+          laVanguardia.hide();
+          about.hide();      
+        }else if(element === "About"){
+          theGuardian.hide();
+          laVanguardia.hide();
+          about.show();
+        }    
+      }
+    </script>
+    <script type="text/javascript" src="./js/jquery.1.11.1.js"></script> 
+    <script type="text/javascript" src="./js/bootstrap.js"></script> 
+    <script type="text/javascript" src="./js/SmoothScroll.js"></script> 
+    <script type="text/javascript" src="./js/nivo-lightbox.js"></script> 
+    <script type="text/javascript" src="./js/jquery.isotope.js"></script> 
+    <script type="text/javascript" src="./js/jqBootstrapValidation.js"></script> 
+    <script type="text/javascript" src="./js/contact_me.js"></script> 
+    <script type="text/javascript" src="./js/main.js"></script>
+  </body>
+</html>
+
+
+
