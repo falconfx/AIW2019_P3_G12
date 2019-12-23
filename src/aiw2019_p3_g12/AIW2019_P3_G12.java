@@ -11,6 +11,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.stream.XMLStreamException;
 import twitteranalysis.TweetTreatment;
+import web.SimpleHTMLConstructor;
+
 /**
  *
  * @author u124320
@@ -111,7 +113,9 @@ public class AIW2019_P3_G12 {
                 System.out.println("All Ok");
                 break;
             case 4:
-                System.out.println("Not implemented");
+                SimpleHTMLConstructor sHC = new SimpleHTMLConstructor();
+                sHC.makeWeb();
+                System.out.println("All Ok");
                 break;
             case 5:
                 System.exit(0);
