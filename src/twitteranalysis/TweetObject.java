@@ -1,6 +1,7 @@
 package twitteranalysis;
 
 import java.util.List;
+import java.util.Date;
 
 /**
  *
@@ -9,7 +10,7 @@ import java.util.List;
 public class TweetObject {
     public HashtagObject hashtagObject;
     public String userName;
-    public String dateTime;
+    public Date dateTime;
     public String sentiment;
     public String hashtag;
     public String sentence;
@@ -39,11 +40,11 @@ public class TweetObject {
         this.userName = userName;
     }
 
-    public String getDateTime() {
+    public Date getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(String dateTime) {
+    public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }
     

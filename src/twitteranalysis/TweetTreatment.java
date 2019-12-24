@@ -14,11 +14,15 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;    
+import java.text.SimpleDateFormat;  
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -48,7 +52,7 @@ public class TweetTreatment {
     
     public static List<TweetObject> finalListTweet = new ArrayList<TweetObject>();
     
-    
+    static final int init_numbers = 0;
 
 
     // Champions hashtags
@@ -63,7 +67,7 @@ public class TweetTreatment {
             "#barcelona", "#follow", "#basketball", 
             "#winners", "#win", "#liverpool", 
             "#pfc", "#fitness", "#love", 
-            "#boxing", "#fifa", "#bhfyp"
+            "#boxing", "#fifa"
         }
     );
     
@@ -139,7 +143,7 @@ public class TweetTreatment {
                    
     }
     
-    public static void analyzeInformation(String computedPath) throws ResourceInstantiationException, IOException{
+    public static void analyzeInformation(String computedPath) throws ResourceInstantiationException, IOException, ParseException{
         File computedPathDir = new File(computedPath);
         File[] computedFiles = computedPathDir.listFiles();
         Document document;
@@ -173,8 +177,22 @@ public class TweetTreatment {
         
        
 
-        tweetsTesting();
-
+        //tweetsTesting();
+        
+        //Probar hashmap
+        //HashMap<String, HashtagObject> hashTable = new HashMap<String, HashtagObject>();
+        //hashTable = ClassifierHashtags(finalListTweet,firstHashtags,secondHashtags, thirdHashtags);
+        //printHashtagsHashMap(hashTable);
+        
+        //Probar datemap
+        HashMap<String, Sentiments> dateTable = new HashMap<String, Sentiments>();
+        dateTable = ClassifierDate(finalListTweet);
+        printClassifierDate(dateTable);
+        
+        //Probar usersmap
+        //HashMap<String, Sentiments> usersTable = new HashMap<String, Sentiments>();
+        //usersTable = ClassifierUserMention(finalListTweet);
+        //printClassifierUserMention(usersTable);
     }
 
     public static void setHashtag(  Long getStartNode,
@@ -187,6 +205,9 @@ public class TweetTreatment {
         
         String hashtag = "";
         String sentiment = "";
+        String userName = "";
+        String dateTweet = "";
+        Date date = new Date();
 
         AnnotationSet hashtagAnnotations = annotationSet.get("Hashtag");
         Iterator<Annotation> iteratorH = hashtagAnnotations.iterator();
@@ -198,11 +219,17 @@ public class TweetTreatment {
         while(iteratorH.hasNext()){
             featureMap = document.getFeatures();
             sentiment = (String) featureMap.get("sentiment");
+            dateTweet = (String) featureMap.get("date");
+            //userName = (String) featureMap.get("user");
+            
             simpleAnnotation = iteratorH.next();
             getStartNode = simpleAnnotation.getStartNode().getOffset();
             getFinalNode = simpleAnnotation.getEndNode().getOffset();
             hashtag = (contentOfDocument.substring(getStartNode.intValue(), getFinalNode.intValue())).toLowerCase();
 
+            SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.UK);
+            date = dateFormat.parse(dateTweet);
+            
             if(hashtag != null && !hashtag.isEmpty()){
                 hashtagsList.add(hashtag); 
             }
@@ -210,6 +237,8 @@ public class TweetTreatment {
         hashtagObject.setHastagsNames(hashtagsList);
         tweetObject.setHashtagObject(hashtagObject);
         tweetObject.setSentiment(sentiment);
+        //tweetObject.setUserName(userName);
+        tweetObject.setDateTime(date);
 
         listTweetObject.add(tweetObject);
         
@@ -239,7 +268,7 @@ public class TweetTreatment {
         
     
     
-    public static void tweetsTesting(){
+    public static void tweetsTesting() throws ParseException{
         for(TweetObject i : finalListTweet) {
             System.out.println("***************************");
             System.out.println("Tweet: " + i.getSentence());
@@ -247,10 +276,17 @@ public class TweetTreatment {
             for(String str : i.getHashtagObject().getHastagsNames()) {
                 System.out.print(str +", ");
             }
+            //Timestamp to datetime or date
+            //Date date1 = new SimpleDateFormat("E MMM dd yyyy HH:mm:ss").parse(i.getDateTime());
+            //Timestamp ts = new Timestamp(date1.getTime());  
+            //SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            //System.out.println("- -DATE:" + formatter.format(ts));
+            System.out.println("- -DATE:" + i.getDateTime());
             System.out.println("");
             System.out.println("Tweet Sentiment: " + i.getSentiment());
             System.out.println("***************************");
             System.out.println("");
+           
         }
     }
     
@@ -263,7 +299,178 @@ public class TweetTreatment {
         return tweets;*/
     
     }
+
     
+   public static HashMap ClassifierHashtags (List<TweetObject> tweetsList, List<String> HashtagsList1, List<String> HashtagsList2, List<String> HashtagsList3){
+    
+    List<String> AllHashtags = new ArrayList<String>();
+    AllHashtags.addAll(HashtagsList1);
+    AllHashtags.addAll(HashtagsList2);
+    AllHashtags.addAll(HashtagsList3);
+    
+    HashMap<String, HashtagObject> hashTable = new HashMap<String, HashtagObject>();
+    
+    for(String hashtag : AllHashtags){
+        HashtagObject hashtagObject = new HashtagObject();
+        hashtagObject.setNameHashtag(hashtag);
+        hashtagObject.getSentiments().setPositive(init_numbers);
+        hashtagObject.getSentiments().setNegative(init_numbers);
+        hashtagObject.getSentiments().setNeutral(init_numbers);
+        //hashtagObject.setNumberOfPositives(init_numbers);
+       //hashtagObject.setNumberOfNegatives(init_numbers);
+        //hashtagObject.setNumberOfNeutrals(init_numbers);
+        hashTable.put(hashtag, hashtagObject);
+    }
+    
+    for(TweetObject tweet : tweetsList){
+        for(String hashtag : tweet.getHashtagObject().getHastagsNames()) {
+            if(hashTable.containsKey(hashtag)){
+                if(tweet.getSentiment().equals("Positive")){
+                    hashTable.get(hashtag).getSentiments().setPositive(hashTable.get(hashtag).getSentiments().getPositive() + 1);
+                    //hashTable.get(hashtag).setNumberOfPositives(hashTable.get(hashtag).getNumberOfPositives() + 1);
+                }else if(tweet.getSentiment().equals("Negative")){
+                    hashTable.get(hashtag).getSentiments().setNegative(hashTable.get(hashtag).getSentiments().getNegative() + 1);
+                    //hashTable.get(hashtag).setNumberOfNegatives(hashTable.get(hashtag).getNumberOfNegatives() + 1);
+                }else if(tweet.getSentiment().equals("Neutral")){
+                    hashTable.get(hashtag).getSentiments().setNeutral(hashTable.get(hashtag).getSentiments().getNeutral() + 1);
+                    //hashTable.get(hashtag).setNumberOfNeutrals(hashTable.get(hashtag).getNumberOfNeutrals() + 1);
+                }
+            }
+        }
+    }
+    
+    return hashTable;
+   }
    
-  
+   public static void printHashtagsHashMap(HashMap hashTable){
+        
+        System.out.println("\n"+"-------------------------------");
+        System.out.println("| Sentiments for each hashtag |");
+        System.out.println("-------------------------------");
+
+        for(Object s: hashTable.keySet()){
+            HashtagObject v = (HashtagObject) hashTable.get(s);
+            int positive = v.getSentiments().getPositive();
+            int negative = v.getSentiments().getNegative();
+            int neutral = v.getSentiments().getNeutral();
+            
+            int addition = positive + negative + neutral;
+
+            System.out.println( s + " (" + addition +") ->" + " Positive: "+ positive + " Negative: "+negative+ " Neutral: "+neutral);
+        }
+    }
+   
+   public static HashMap ClassifierDate (List<TweetObject> tweetsList){
+        HashMap<String, Sentiments> dateTable = new HashMap<String, Sentiments>();
+        
+        for(TweetObject tweet : tweetsList){
+            Date date = tweet.getDateTime();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
+            String strDate = dateFormat.format(date);
+            if(dateTable.containsKey(strDate)){
+                
+                if(tweet.getSentiment().equals("Positive")){
+                    dateTable.get(strDate).setPositive(dateTable.get(strDate).getPositive() + 1);
+                }else if(tweet.getSentiment().equals("Negative")){
+                    dateTable.get(strDate).setNegative(dateTable.get(strDate).getNegative() + 1);
+                }else if(tweet.getSentiment().equals("Neutral")){
+                    dateTable.get(strDate).setNeutral(dateTable.get(strDate).getNeutral() + 1);
+                }
+               
+            }else{
+                Sentiments sentiment = new Sentiments();
+                if(tweet.getSentiment().equals("Positive")){
+                    sentiment.setPositive(1);
+                    sentiment.setNegative(init_numbers);
+                    sentiment.setNeutral(init_numbers);
+                }else if(tweet.getSentiment().equals("Negative")){
+                    sentiment.setPositive(init_numbers);
+                    sentiment.setNegative(1);
+                    sentiment.setNeutral(init_numbers);
+                }else if(tweet.getSentiment().equals("Neutral")){
+                    sentiment.setPositive(init_numbers);
+                    sentiment.setNegative(init_numbers);
+                    sentiment.setNeutral(1);
+                }
+                dateTable.put(strDate, sentiment);
+            }
+        }
+        
+        return dateTable;
+   }   
+   
+   public static void printClassifierDate(HashMap dateTable){
+        
+        System.out.println("\n"+"-------------------------------");
+        System.out.println("| Date for each tweet |");
+        System.out.println("-------------------------------");
+
+        for(Object s: dateTable.keySet()){
+            Sentiments v = (Sentiments) dateTable.get(s);
+            int positive = v.getPositive();
+            int negative = v.getNegative();
+            int neutral = v.getNeutral();
+            
+            int addition = positive + negative + neutral;
+
+            System.out.println( s + " (" + addition +") ->" + " Positive: "+ positive + " Negative: "+negative+ " Neutral: "+neutral);
+        }
+    }
+   
+   
+   public static HashMap ClassifierUserMention (List<TweetObject> tweetsList){
+        HashMap<String, Sentiments> usersTable = new HashMap<String, Sentiments>();
+        
+        for(TweetObject tweet : tweetsList){
+            String name = tweet.getUserName();
+            if(usersTable.containsKey(name)){
+                
+                if(tweet.getSentiment().equals("Positive")){
+                    usersTable.get(name).setPositive(usersTable.get(name).getPositive() + 1);
+                }else if(tweet.getSentiment().equals("Negative")){
+                    usersTable.get(name).setNegative(usersTable.get(name).getNegative() + 1);
+                }else if(tweet.getSentiment().equals("Neutral")){
+                    usersTable.get(name).setNeutral(usersTable.get(name).getNeutral() + 1);
+                }
+               
+            }else{
+                Sentiments sentiment = new Sentiments();
+                if(tweet.getSentiment().equals("Positive")){
+                    sentiment.setPositive(1);
+                    sentiment.setNegative(init_numbers);
+                    sentiment.setNeutral(init_numbers);
+                }else if(tweet.getSentiment().equals("Negative")){
+                    sentiment.setPositive(init_numbers);
+                    sentiment.setNegative(1);
+                    sentiment.setNeutral(init_numbers);
+                }else if(tweet.getSentiment().equals("Neutral")){
+                    sentiment.setPositive(init_numbers);
+                    sentiment.setNegative(init_numbers);
+                    sentiment.setNeutral(1);
+                }
+                usersTable.put(name, sentiment);
+            }
+        }
+        
+        return usersTable;
+   }
+   
+   public static void printClassifierUserMention(HashMap usersTable){
+        
+        System.out.println("\n"+"-------------------------------");
+        System.out.println("| Sentiments for each user |");
+        System.out.println("-------------------------------");
+
+        for(Object s: usersTable.keySet()){
+            Sentiments v = (Sentiments) usersTable.get(s);
+            int positive = v.getPositive();
+            int negative = v.getNegative();
+            int neutral = v.getNeutral();
+            
+            int addition = positive + negative + neutral;
+
+            System.out.println( s + " (" + addition +") ->" + " Positive: "+ positive + " Negative: "+negative+ " Neutral: "+neutral);
+        }
+    }
+   
 }

@@ -47,7 +47,7 @@ public class SimpleHTMLConstructor {
             osw.append(header+"\n");
             osw.flush();
 
-            osw.append(tOBody);
+            //osw.append(tOBody);
 
             osw.append(footer+"\n");
             osw.flush();
