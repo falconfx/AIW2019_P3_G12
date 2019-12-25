@@ -3,6 +3,7 @@ package dataprocessing;
 import gate.Annotation;
 import gate.AnnotationSet;
 import gate.Document;
+import gate.FeatureMap;
 import java.io.IOException;
 import java.util.Iterator;
 
@@ -16,9 +17,13 @@ public class Sentiment {
         String sentimentResult;
         AnnotationSet annotationSet = document.getAnnotations();
         AnnotationSet docSent = annotationSet.get("Senti");
-        /*
+        
         AnnotationSet OM =  document.getAnnotations("Original markups");
         FeatureMap tweet = OM.get(0).getFeatures();
+        String created_at = tweet.get("created_at").toString();
+        //FeatureMap tweet2 = OM.get(12).getFeatures();
+        //String user = tweet2.get("user").toString();
+        /*
         String lang = tweet.get("lang").toString();
         
         switch (lang) {
@@ -52,7 +57,9 @@ public class Sentiment {
         else{ sentimentResult = "Neutral"; }        
        
         document.getFeatures().put("sentiment", sentimentResult);
-     
+        document.getFeatures().put("date", created_at);
+        //document.getFeatures().put("user", user);
+        
         return sentimentResult;
             
     }

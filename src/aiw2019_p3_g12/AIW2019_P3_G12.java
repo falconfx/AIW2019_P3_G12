@@ -7,6 +7,7 @@ import java.util.Properties;
 import dataprocessing.CallGATEConditionalCorpusPipeline;
 import gate.creole.ResourceInstantiationException;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.stream.XMLStreamException;
@@ -27,14 +28,14 @@ public class AIW2019_P3_G12 {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws FileNotFoundException, XMLStreamException, ResourceInstantiationException, IOException {
+    public static void main(String[] args) throws FileNotFoundException, XMLStreamException, ResourceInstantiationException, IOException, ParseException {
         int userChoice;
         userChoice = menu();
         //System.out.print(userChoice);
     }
     
     
-    public static int menu() throws FileNotFoundException, IOException {
+    public static int menu() throws FileNotFoundException, IOException, ParseException {
 
         int selection = 0;
         Scanner input = new Scanner(System.in);
@@ -64,7 +65,7 @@ public class AIW2019_P3_G12 {
         return selection;    
     }
     
-    public static void userAction(int userChoice) throws FileNotFoundException, XMLStreamException, ResourceInstantiationException, IOException{
+    public static void userAction(int userChoice) throws FileNotFoundException, XMLStreamException, ResourceInstantiationException, IOException, ParseException{
         String gappPath = "";
         String twitterPluginPath = "";
         System.setProperty("log4j.debug", "");
@@ -80,21 +81,21 @@ public class AIW2019_P3_G12 {
                     Properties props = System.getProperties();
                     Scanner keyboardGate = new Scanner(System.in);
                     System.out.println("Please enter your Gate-Home (variable) path: ");
-                    String gateHomePath = keyboardGate.nextLine();
-                    //String gateHomePath = "C:\\Program Files\\GATE_Developer_8.0";
+                    //String gateHomePath = keyboardGate.nextLine();
+                    String gateHomePath = "C:\\Program Files\\GATE_Developer_8.0";
                     props.setProperty("gate.home", gateHomePath);
                     
                     
                     Scanner keyboardGapp = new Scanner(System.in);
                     System.out.println("Please enter your gapp path: ");
-                    gappPath = keyboardGapp.nextLine();
-                    //gappPath = "\\\\dcloud.local\\public\\023\\u124320\\Documents\\NetBeansProjects\\AIW2019_P3_G12\\gapp\\MyTwitter.gapp";
+                    //gappPath = keyboardGapp.nextLine();
+                    gappPath = "\\\\dcloud.local\\public\\023\\u124307\\Documents\\NetBeansProjects\\AIW2019_P3_G12\\gapp\\MyTwitter.gapp";
                 
                 
                     Scanner keyboardTwitterPlugin = new Scanner(System.in);
                     System.out.println("Please enter your twitter plugin path: ");
-                    twitterPluginPath = keyboardTwitterPlugin.nextLine();
-                    //twitterPluginPath = "C:\\Program Files\\GATE_Developer_8.0\\plugins\\Twitter";
+                    //twitterPluginPath = keyboardTwitterPlugin.nextLine();
+                    twitterPluginPath = "C:\\Program Files\\GATE_Developer_8.0\\plugins\\Twitter";
                                
                 }catch(Exception e){
                     System.out.println(e.getMessage());
