@@ -1,26 +1,56 @@
     <script type="text/javascript">
-      theGuardian.hide();
       about.hide();
-      laVanguardia.hide();
+      hashTags.hide();
+      top10.hide();
+      date.hide();
+      heatMap.hide();
+      circleMap.hide();
+
 
       function showStuff(element)  {
-
-        var laVanguardia = $('#LaVanguardia');
-        var theGuardian = $('#TheGuardian');
         var about = $('#About');
-        if(element === "LaVanguardia"){
-          theGuardian.hide();
-          about.hide();
-          laVanguardia.show();
-        }else if(element === "TheGuardian"){
-          theGuardian.show();
-          laVanguardia.hide();
-          about.hide();      
-        }else if(element === "About"){
-          theGuardian.hide();
-          laVanguardia.hide();
+        var hashTags = $('#Hashtags');
+        var top10 = $('#Top10');
+        var date = $('#Date');
+        var heatMap = $('#HeatMap');
+        var circleMap = $('#CircleMap');
+        if(element === "About"){
+          hashTags.hide();
           about.show();
-        }    
+          top10.hide();
+          date.hide();
+          heatMap.hide();
+          circleMap.hide();
+        }else if(element === "Hashtags"){
+          hashTags.show();
+          about.hide();
+          top10.hide();
+          date.hide();
+          heatMap.hide();
+          circleMap.hide();     
+        }else if(element === "Date"){
+          hashTags.hide();
+          about.hide();
+          top10.hide();
+          date.show();
+          heatMap.hide();
+          circleMap.hide();
+        }else if(element === "HeatMap"){
+          hashTags.hide();
+          about.hide();
+          top10.hide();
+          date.hide();
+          heatMap.show();
+          circleMap.hide();
+        }else if(element === "CircleMap"){
+          hashTags.hide();
+          about.hide();
+          top10.hide();
+          date.hide();
+          heatMap.hide();
+          circleMap.show();
+        }
+
       }
     </script>
     <script type="text/javascript" src="./js/jquery.1.11.1.js"></script> 

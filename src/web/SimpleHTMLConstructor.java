@@ -34,7 +34,7 @@ public class SimpleHTMLConstructor {
         List<TweetObject> tOBody = new ArrayList<TweetObject>();
         OutputStreamWriter osw;
         TweetTreatment tweetT = new TweetTreatment();
-        File fout=new File("."+File.separator+"output"+File.separator+
+        File fout=new File("."+File.separator+"web"+File.separator+
                 "index.html");
         FileOutputStream writer=new FileOutputStream(fout);
         osw=new OutputStreamWriter(writer,"utf-8");
@@ -62,7 +62,7 @@ public class SimpleHTMLConstructor {
     }
     
     public String getHeader(){
-        String filePath = "./output/components/header.html";
+        String filePath = "./output/web/header.html";
         StringBuilder contentBuilder = new StringBuilder();
  
         try (Stream<String> stream = Files.lines( Paths.get(filePath), StandardCharsets.UTF_8)) 
@@ -103,7 +103,7 @@ public class SimpleHTMLConstructor {
     
      
     public String getFooter(){
-        String filePath = "./output/components/footer.html";
+        String filePath = "./output/web/footer.html";
         StringBuilder contentBuilder = new StringBuilder();
  
         try (Stream<String> stream = Files.lines( Paths.get(filePath), StandardCharsets.UTF_8)) 
