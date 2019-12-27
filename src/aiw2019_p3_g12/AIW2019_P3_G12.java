@@ -32,7 +32,6 @@ public class AIW2019_P3_G12 {
     public static void main(String[] args) throws FileNotFoundException, XMLStreamException, ResourceInstantiationException, IOException, ParseException {
         int userChoice;
         userChoice = menu();
-        //System.out.print(userChoice);
     }
     
     
@@ -75,11 +74,13 @@ public class AIW2019_P3_G12 {
         switch(userChoice){
             case 0:
                 ExtractSentiment sentimentExtraction = new ExtractSentiment();
+                System.out.println("Working ...");
                 sentimentExtraction.main();
                 System.out.println("All Ok -> /Search files into resources/sample_gazetteer folder");
                 break;
             case 1: 
                 ReadFile rf = new ReadFile();
+                System.out.println("Working ...");
                 rf.main(JSONCOMPRESSEDPATH, JSONUNCOMPRESSEDPATH);
                 System.out.println("All Ok");
                 break;
@@ -88,45 +89,49 @@ public class AIW2019_P3_G12 {
                     Properties props = System.getProperties();
                     Scanner keyboardGate = new Scanner(System.in);
                     System.out.println("Please enter your Gate-Home (variable) path: ");
-                    //String gateHomePath = keyboardGate.nextLine();
-                    String gateHomePath = "C:\\Program Files\\GATE_Developer_8.0";
+                    String gateHomePath = keyboardGate.nextLine();
+                    //String gateHomePath = "C:\\Program Files\\GATE_Developer_8.0";
                     props.setProperty("gate.home", gateHomePath);
                     
                     
                     Scanner keyboardGapp = new Scanner(System.in);
                     System.out.println("Please enter your gapp path: ");
-                    //gappPath = keyboardGapp.nextLine();
+                    gappPath = keyboardGapp.nextLine();
                     //gappPath = "\\\\dcloud.local\\public\\023\\u124307\\Documents\\NetBeansProjects\\AIW2019_P3_G12\\gapp\\MyTwitter.gapp";
-                    gappPath = "\\\\dcloud.local\\public\\023\\u124320\\Documents\\NetBeansProjects\\AIW2019_P3_G12\\gapp\\MyTwitter.gapp";
+                    //gappPath = "\\\\dcloud.local\\public\\023\\u124320\\Documents\\NetBeansProjects\\AIW2019_P3_G12\\gapp\\MyTwitter.gapp";
                 
                 
                     Scanner keyboardTwitterPlugin = new Scanner(System.in);
                     System.out.println("Please enter your twitter plugin path: ");
-                    //twitterPluginPath = keyboardTwitterPlugin.nextLine();
-                    twitterPluginPath = "C:\\Program Files\\GATE_Developer_8.0\\plugins\\Twitter";
+                    twitterPluginPath = keyboardTwitterPlugin.nextLine();
+                    //twitterPluginPath = "C:\\Program Files\\GATE_Developer_8.0\\plugins\\Twitter";
                                
                 }catch(Exception e){
                     System.out.println(e.getMessage());
                     break;
                 }
-                
+
                 CallGATEConditionalCorpusPipeline corpusPipeline = new CallGATEConditionalCorpusPipeline();
+                System.out.println("Working ...");
                 corpusPipeline.main(gappPath, twitterPluginPath);
    
                 System.out.println("All Ok");
                 break;
             case 3:
+                System.out.println("Working ...");
                 TweetTreatment tTreatment = new TweetTreatment();
                 tTreatment.setInformation();
                 tTreatment.analyzeInformation(JSONTOXMLPATH);
                 System.out.println("All Ok");
                 break;
             case 4:
+                System.out.println("Working ...");
                 SimpleHTMLConstructor sHC = new SimpleHTMLConstructor();
                 sHC.makeWeb();
-                System.out.println("All Ok");
+                System.out.println("All Ok -> Web in /web/index.html");
                 break;
             case 5:
+                System.out.println("Bye! :D");
                 System.exit(0);
                 break;
 

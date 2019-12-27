@@ -16,7 +16,7 @@
   <link rel="stylesheet" type="text/css" href="./css/nivo-lightbox/nivo-lightbox.css">
   <link rel="stylesheet" type="text/css" href="./css/nivo-lightbox/default.css">
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300' rel='stylesheet' type='text/css'>
-  <script type="text/javascript" src="./js/modernizr.custom.js"></script>
+  <!--<script type="text/javascript" src="./js/modernizr.custom.js"></script>-->
 
 
   <title>G12 - Web of Twitter Sentiment Analysis</title>
@@ -54,8 +54,8 @@
 <li> <a class="page-scroll" href="#" onclick="showStuff('Hashtags')">Hashtags</a> </li>
 <li> <a class="page-scroll" href="#" onclick="showStuff('UsersMentioned')">UsersMentioned</a> </li>
 <li> <a class="page-scroll" href="#" onclick="showStuff('Date')">Date</a> </li>
-<li> <a class="page-scroll" href="#" onclick="showStuff('HeatMap')">HeatMap</a> </li>
-<li> <a class="page-scroll" href="#" onclick="showStuff('CircleMap')">CircleMap</a> </li>
+<li> <a class="page-scroll" href="maps/heat-map-out.html" target="_blank">HeatMap</a> </li>
+<li> <a class="page-scroll" href="maps/circle-map-out.html" target="_blank">CircleMap</a> </li>
          </ul>
             </div>
         </div>
@@ -69,21 +69,9 @@
     </div>
 </div>
 <div class="contentTabulator" id="Hashtags" style="display:none;padding:2%;">
-<center><div id="chart_div#gta" class="chart" ></div>
-<div id="chart_div#follow" class="chart" ></div>
-<div id="chart_div#like" class="chart" ></div>
-<div id="chart_div#game" class="chart" ></div>
-<div id="chart_div#win" class="chart" ></div>
-<div id="chart_div#nintendo" class="chart" ></div>
-<div id="chart_div#streamer" class="chart" ></div>
-<div id="chart_div#youtube" class="chart" ></div>
-<div id="chart_div#games" class="chart" ></div>
-<div id="chart_div#donaldtrump" class="chart" ></div>
-<div id="chart_div#gamer" class="chart" ></div>
-<div id="chart_div#meme" class="chart" ></div>
-<div id="chart_div#gaming" class="chart" ></div>
-<div id="chart_div#twitch" class="chart" ></div>
-<div id="chart_div#fortnite" class="chart" ></div>
+<center><div id="chart_div#america" class="chart" ></div>
+<div id="chart_div#premierleague" class="chart" ></div>
+<div id="chart_div#barcelona" class="chart" ></div>
 </center>
 </div>
 
@@ -106,120 +94,11 @@
         ]);
 
         // Set chart options
-        var options = {'title':'#gta',
-                       'width':400,
-                       'height':300};
+        var options = {'title':'#america',
+                       'width':800,
+                       'height':600};
 
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div#gta'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 2],
-          ['Neutrals', 4],
-        ]);
-
-        // Set chart options
-        var options = {'title':'#follow',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div#follow'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 8],
-          ['Neutrals', 0],
-        ]);
-
-        // Set chart options
-        var options = {'title':'#like',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div#like'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 2],
-          ['Neutrals', 0],
-        ]);
-
-        // Set chart options
-        var options = {'title':'#game',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div#game'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 1],
-          ['Neutrals', 2],
-        ]);
-
-        // Set chart options
-        var options = {'title':'#win',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div#win'));
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div#america'));
         chart.draw(data, options);
       }
     </script>
@@ -241,12 +120,11 @@
         ]);
 
         // Set chart options
-        var options = {'title':'#nintendo',
-                       'width':400,
-                       'height':300};
+        var options = {'title':'#premierleague',
+                       'width':800,
+                       'height':600};
 
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div#nintendo'));
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div#premierleague'));
         chart.draw(data, options);
       }
     </script>
@@ -264,282 +142,32 @@
         data.addRows([
           ['Positive', 0],
           ['Negative', 1],
-          ['Neutrals', 2],
-        ]);
-
-        // Set chart options
-        var options = {'title':'#streamer',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div#streamer'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 4],
-          ['Neutrals', 2],
-        ]);
-
-        // Set chart options
-        var options = {'title':'#youtube',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div#youtube'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 0],
           ['Neutrals', 1],
         ]);
 
         // Set chart options
-        var options = {'title':'#games',
-                       'width':400,
-                       'height':300};
+        var options = {'title':'#barcelona',
+                       'width':800,
+                       'height':600};
 
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div#games'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 1],
-          ['Neutrals', 0],
-        ]);
-
-        // Set chart options
-        var options = {'title':'#donaldtrump',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div#donaldtrump'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 1],
-          ['Negative', 1],
-          ['Neutrals', 2],
-        ]);
-
-        // Set chart options
-        var options = {'title':'#gamer',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div#gamer'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 1],
-          ['Neutrals', 0],
-        ]);
-
-        // Set chart options
-        var options = {'title':'#meme',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div#meme'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 2],
-          ['Neutrals', 1],
-        ]);
-
-        // Set chart options
-        var options = {'title':'#gaming',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div#gaming'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 8],
-          ['Neutrals', 4],
-        ]);
-
-        // Set chart options
-        var options = {'title':'#twitch',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div#twitch'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 4],
-          ['Neutrals', 7],
-        ]);
-
-        // Set chart options
-        var options = {'title':'#fortnite',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div#fortnite'));
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div#barcelona'));
         chart.draw(data, options);
       }
     </script>
 <div class="contentTabulator" id="UsersMentioned" style="display:none;padding:2%;">
-<center><div id="chart_div@1UpElite" class="chart" ></div>
-<div id="chart_div@coiledspring" class="chart" ></div>
-<div id="chart_div@SzamerM" class="chart" ></div>
-<div id="chart_div@ashley19_love" class="chart" ></div>
-<div id="chart_div@illicit69kitty" class="chart" ></div>
-<div id="chart_div@am2pmrec" class="chart" ></div>
-<div id="chart_div@Silenthun" class="chart" ></div>
-<div id="chart_div@retrokid90zstar" class="chart" ></div>
-<div id="chart_div@BeatSaber" class="chart" ></div>
-<div id="chart_div@WatchMixer" class="chart" ></div>
-<div id="chart_div@Jimtime17" class="chart" ></div>
-<div id="chart_div@MrDAQUI" class="chart" ></div>
-<div id="chart_div@FortniteEsp_" class="chart" ></div>
-<div id="chart_div@RockinWOAPRadio" class="chart" ></div>
-<div id="chart_div@BlooberTeam" class="chart" ></div>
-<div id="chart_div@scarletmonahan" class="chart" ></div>
-<div id="chart_div@IllFonic" class="chart" ></div>
-<div id="chart_div@pandagrrrrl" class="chart" ></div>
-<div id="chart_div@MaiksF1Channel" class="chart" ></div>
-<div id="chart_div@_585ig" class="chart" ></div>
-<div id="chart_div@AsmodeeUK" class="chart" ></div>
-<div id="chart_div@Tw" class="chart" ></div>
-<div id="chart_div@TigerLadyTV" class="chart" ></div>
-<div id="chart_div@Praejator" class="chart" ></div>
-<div id="chart_div@ColonelFalcon" class="chart" ></div>
-<div id="chart_div@NealAkuma" class="chart" ></div>
-<div id="chart_div@Misaaya_" class="chart" ></div>
-<div id="chart_div@CollinsChadM" class="chart" ></div>
-<div id="chart_div@TotalFreak_" class="chart" ></div>
-<div id="chart_div@RawAnUncut" class="chart" ></div>
-<div id="chart_div@AymandoMusic" class="chart" ></div>
-<div id="chart_div@Denote218" class="chart" ></div>
-<div id="chart_div@FaZeClan" class="chart" ></div>
-<div id="chart_div@2LucKyLIVE" class="chart" ></div>
-<div id="chart_div@ImpulsaEventos" class="chart" ></div>
-<div id="chart_div@MaryPatriotNews" class="chart" ></div>
-<div id="chart_div@vampipe" class="chart" ></div>
-<div id="chart_div@PowerDirectUK" class="chart" ></div>
-<div id="chart_div@_DailyDizzle" class="chart" ></div>
-<div id="chart_div@Cazztr0" class="chart" ></div>
-<div id="chart_div@YouTubeTrends" class="chart" ></div>
-<div id="chart_div@mrsqueenb_xx" class="chart" ></div>
+<center><div id="chart_div@" class="chart" ></div>
+<div id="chart_div@lordoftheisles1" class="chart" ></div>
+<div id="chart_div@SoxisG" class="chart" ></div>
+<div id="chart_div@JoeEdwards_Star" class="chart" ></div>
+<div id="chart_div@FaZeTass" class="chart" ></div>
+<div id="chart_div@rickyrozay" class="chart" ></div>
+<div id="chart_div@alvinfoo" class="chart" ></div>
+<div id="chart_div@realDonaldTrump" class="chart" ></div>
+<div id="chart_div@_nonameagain" class="chart" ></div>
+<div id="chart_div@TheShadowyOne85" class="chart" ></div>
+<div id="chart_div@emmerdale" class="chart" ></div>
+<div id="chart_div@TheatreRoyalBSE" class="chart" ></div>
 <div id="chart_div@YouTube" class="chart" ></div>
-<div id="chart_div@ConanExiles" class="chart" ></div>
-<div id="chart_div@Bnk_Rpt" class="chart" ></div>
-<div id="chart_div@FoxySnaps" class="chart" ></div>
 </center>
 </div>
 
@@ -555,17 +183,16 @@
         data.addColumn('string', 'Type');
         data.addColumn('number', 'Quantity');
         data.addRows([
-          ['Positive', 1],
-          ['Negative', 17],
-          ['Neutrals', 9],
+          ['Positive', 0],
+          ['Negative', 16],
+          ['Neutrals', 8],
         ]);
 
         // Set chart options
         var options = {'title':'',
-                       'width':400,
-                       'height':300};
+                       'width':800,
+                       'height':600};
 
-        // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
         chart.draw(data, options);
       }
@@ -584,259 +211,15 @@
         data.addRows([
           ['Positive', 0],
           ['Negative', 1],
-          ['Neutrals', 0],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@1UpElite',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@1UpElite'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 2],
-          ['Neutrals', 0],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@coiledspring',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@coiledspring'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 1],
-          ['Negative', 0],
-          ['Neutrals', 0],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@SzamerM',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@SzamerM'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 1],
-          ['Neutrals', 0],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@ashley19_love',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@ashley19_love'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 1],
-          ['Neutrals', 0],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@illicit69kitty',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@illicit69kitty'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 1],
-          ['Negative', 0],
-          ['Neutrals', 0],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@am2pmrec',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@am2pmrec'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 1],
-          ['Neutrals', 0],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@Silenthun',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@Silenthun'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 0],
           ['Neutrals', 1],
         ]);
 
         // Set chart options
-        var options = {'title':'@retrokid90zstar',
-                       'width':400,
-                       'height':300};
+        var options = {'title':'@',
+                       'width':800,
+                       'height':600};
 
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@retrokid90zstar'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 0],
-          ['Neutrals', 1],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@BeatSaber',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@BeatSaber'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 0],
-          ['Neutrals', 1],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@WatchMixer',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@WatchMixer'));
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div@'));
         chart.draw(data, options);
       }
     </script>
@@ -858,12 +241,11 @@
         ]);
 
         // Set chart options
-        var options = {'title':'@Jimtime17',
-                       'width':400,
-                       'height':300};
+        var options = {'title':'@lordoftheisles1',
+                       'width':800,
+                       'height':600};
 
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@Jimtime17'));
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div@lordoftheisles1'));
         chart.draw(data, options);
       }
     </script>
@@ -885,120 +267,11 @@
         ]);
 
         // Set chart options
-        var options = {'title':'@MrDAQUI',
-                       'width':400,
-                       'height':300};
+        var options = {'title':'@SoxisG',
+                       'width':800,
+                       'height':600};
 
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@MrDAQUI'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 0],
-          ['Neutrals', 1],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@FortniteEsp_',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@FortniteEsp_'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 0],
-          ['Neutrals', 1],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@RockinWOAPRadio',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@RockinWOAPRadio'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 0],
-          ['Neutrals', 1],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@BlooberTeam',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@BlooberTeam'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 0],
-          ['Neutrals', 1],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@scarletmonahan',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@scarletmonahan'));
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div@SoxisG'));
         chart.draw(data, options);
       }
     </script>
@@ -1020,66 +293,11 @@
         ]);
 
         // Set chart options
-        var options = {'title':'@IllFonic',
-                       'width':400,
-                       'height':300};
+        var options = {'title':'@JoeEdwards_Star',
+                       'width':800,
+                       'height':600};
 
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@IllFonic'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 0],
-          ['Neutrals', 1],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@pandagrrrrl',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@pandagrrrrl'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 0],
-          ['Neutrals', 1],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@MaiksF1Channel',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@MaiksF1Channel'));
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div@JoeEdwards_Star'));
         chart.draw(data, options);
       }
     </script>
@@ -1101,12 +319,11 @@
         ]);
 
         // Set chart options
-        var options = {'title':'@_585ig',
-                       'width':400,
-                       'height':300};
+        var options = {'title':'@FaZeTass',
+                       'width':800,
+                       'height':600};
 
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@_585ig'));
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div@FaZeTass'));
         chart.draw(data, options);
       }
     </script>
@@ -1128,39 +345,11 @@
         ]);
 
         // Set chart options
-        var options = {'title':'@AsmodeeUK',
-                       'width':400,
-                       'height':300};
+        var options = {'title':'@rickyrozay',
+                       'width':800,
+                       'height':600};
 
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@AsmodeeUK'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 0],
-          ['Neutrals', 1],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@Tw',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@Tw'));
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div@rickyrozay'));
         chart.draw(data, options);
       }
     </script>
@@ -1182,12 +371,11 @@
         ]);
 
         // Set chart options
-        var options = {'title':'@TigerLadyTV',
-                       'width':400,
-                       'height':300};
+        var options = {'title':'@alvinfoo',
+                       'width':800,
+                       'height':600};
 
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@TigerLadyTV'));
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div@alvinfoo'));
         chart.draw(data, options);
       }
     </script>
@@ -1209,12 +397,11 @@
         ]);
 
         // Set chart options
-        var options = {'title':'@Praejator',
-                       'width':400,
-                       'height':300};
+        var options = {'title':'@realDonaldTrump',
+                       'width':800,
+                       'height':600};
 
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@Praejator'));
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div@realDonaldTrump'));
         chart.draw(data, options);
       }
     </script>
@@ -1236,39 +423,11 @@
         ]);
 
         // Set chart options
-        var options = {'title':'@ColonelFalcon',
-                       'width':400,
-                       'height':300};
+        var options = {'title':'@_nonameagain',
+                       'width':800,
+                       'height':600};
 
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@ColonelFalcon'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 0],
-          ['Neutrals', 1],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@NealAkuma',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@NealAkuma'));
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div@_nonameagain'));
         chart.draw(data, options);
       }
     </script>
@@ -1290,93 +449,11 @@
         ]);
 
         // Set chart options
-        var options = {'title':'@Misaaya_',
-                       'width':400,
-                       'height':300};
+        var options = {'title':'@TheShadowyOne85',
+                       'width':800,
+                       'height':600};
 
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@Misaaya_'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 0],
-          ['Neutrals', 1],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@CollinsChadM',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@CollinsChadM'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 0],
-          ['Neutrals', 1],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@TotalFreak_',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@TotalFreak_'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 0],
-          ['Neutrals', 1],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@RawAnUncut',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@RawAnUncut'));
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div@TheShadowyOne85'));
         chart.draw(data, options);
       }
     </script>
@@ -1398,12 +475,11 @@
         ]);
 
         // Set chart options
-        var options = {'title':'@AymandoMusic',
-                       'width':400,
-                       'height':300};
+        var options = {'title':'@emmerdale',
+                       'width':800,
+                       'height':600};
 
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@AymandoMusic'));
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div@emmerdale'));
         chart.draw(data, options);
       }
     </script>
@@ -1425,12 +501,11 @@
         ]);
 
         // Set chart options
-        var options = {'title':'@Denote218',
-                       'width':400,
-                       'height':300};
+        var options = {'title':'@TheatreRoyalBSE',
+                       'width':800,
+                       'height':600};
 
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@Denote218'));
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div@TheatreRoyalBSE'));
         chart.draw(data, options);
       }
     </script>
@@ -1448,372 +523,20 @@
         data.addRows([
           ['Positive', 0],
           ['Negative', 1],
-          ['Neutrals', 0],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@FaZeClan',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@FaZeClan'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 1],
-          ['Neutrals', 0],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@2LucKyLIVE',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@2LucKyLIVE'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 1],
-          ['Neutrals', 0],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@ImpulsaEventos',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@ImpulsaEventos'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 1],
-          ['Neutrals', 0],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@MaryPatriotNews',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@MaryPatriotNews'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 1],
-          ['Neutrals', 0],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@vampipe',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@vampipe'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 0],
-          ['Neutrals', 2],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@PowerDirectUK',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@PowerDirectUK'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 1],
-          ['Neutrals', 0],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@_DailyDizzle',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@_DailyDizzle'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 1],
-          ['Neutrals', 0],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@Cazztr0',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@Cazztr0'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 0],
-          ['Neutrals', 1],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@YouTubeTrends',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@YouTubeTrends'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 1],
-          ['Neutrals', 0],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@mrsqueenb_xx',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@mrsqueenb_xx'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 2],
           ['Neutrals', 0],
         ]);
 
         // Set chart options
         var options = {'title':'@YouTube',
-                       'width':400,
-                       'height':300};
+                       'width':800,
+                       'height':600};
 
-        // Instantiate and draw our chart, passing in some options.
         var chart = new google.visualization.PieChart(document.getElementById('chart_div@YouTube'));
         chart.draw(data, options);
       }
     </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 1],
-          ['Neutrals', 0],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@ConanExiles',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@ConanExiles'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 1],
-          ['Neutrals', 0],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@Bnk_Rpt',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@Bnk_Rpt'));
-        chart.draw(data, options);
-      }
-    </script>
-<script type='text/javascript'>
-
-      google.charts.load('current', {'packages':['corechart']});
-
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Type');
-        data.addColumn('number', 'Quantity');
-        data.addRows([
-          ['Positive', 0],
-          ['Negative', 1],
-          ['Neutrals', 0],
-        ]);
-
-        // Set chart options
-        var options = {'title':'@FoxySnaps',
-                       'width':400,
-                       'height':300};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div@FoxySnaps'));
-        chart.draw(data, options);
-      }
-    </script>
 <div class="contentTabulator" id="Date" style="display:none;padding:2%;">
-<center><div id="chart_div2019-12-12" class="chart" ></div>
+<center><div id="chart_div2019-12-27" class="chart" ></div>
 </center>
 </div>
 
@@ -1829,22 +552,24 @@
         data.addColumn('string', 'Type');
         data.addColumn('number', 'Quantity');
         data.addRows([
-          ['Positive', 3],
-          ['Negative', 47],
-          ['Neutrals', 26],
+          ['Positive', 0],
+          ['Negative', 29],
+          ['Neutrals', 9],
         ]);
 
         // Set chart options
-        var options = {'title':'2019-12-12',
-                       'width':400,
-                       'height':300};
+        var options = {'title':'2019-12-27',
+                       'width':800,
+                       'height':600};
 
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div2019-12-12'));
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div2019-12-27'));
         chart.draw(data, options);
       }
     </script>
     <script type="text/javascript">
+    
+     
+
       about.hide();
       hashTags.hide();
       usersMentioned.hide();
@@ -1860,6 +585,7 @@
         var date = $('#Date');
         var heatMap = $('#HeatMap');
         var circleMap = $('#CircleMap');
+       
         if(element === "About"){
           hashTags.hide();
           about.show();

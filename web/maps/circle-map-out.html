@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Circles</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+	div.info {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+	opacity: 0.8;
+	background-color: #7cafc0;
+    border: 1px solid #005d6d;
+
+	font-size: 18px;
+	font-family: 'Roboto','sans-serif';
+    }
+	
+    </style>
+  </head>
+  <body>
+<div id="map"></div>
+
+
+<div id="info" class="info">
+Click on the circle to see the information!
+</div>
+
+
+
+    <script>
+
+// This example creates circles on the map
+
+// First, create an object containing LatLng and population for each city.
+var citymap = {
+
+	//remember the format:
+	//id664873525564559360: {center: {lat: 41.40879414, lng: 2.1776104},color: '#0052A4',user: 'carlesapm',device: 'Instagram',time: 'Thu Nov 12 19:32:55 CET 2015',text: 'Aparicions celestials durant el rodatge de #emdicmanel #apmtv3 #estrelladammcat #igers #igersbcn� <a href="https://t.co/eYO1F5ySCp" target="_blank"> link </a>'},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  id1210635673579008000: {center: {lat: 51.83333333, lng: -0.83333333},color: '#DFBB27',user: 'sneakysensei1 1210635673579008000 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 18:56:51 +0000 2019',text: '(SENT: Negative) #IF #You #Guys #Miss #Last #Night #Stream #on youtube #i #Got #you #guys #cover #and #something #eles #that #might… <a href="https://t.co/HovKra0hz7" target="_blank"> link </a>',},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  id1210635850616172544: {center: {lat: 53.3927, lng: -3.02602},color: '#DFBB27',user: 'Mr_Male_Mixer 1210635850616172544 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 18:57:33 +0000 2019',text: '(SENT: Neutral) Happy Friday Everyone!  I Hope You Are All Having A Fantastic Friday Day&Night, My Friday Is Going Amazing, I m Spe… <a href="https://t.co/rf85oSc6X9" target="_blank"> link </a>',},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  id1210636007198134273: {center: {lat: 53.4543, lng: -2.0805},color: '#DFBB27',user: 'teamcfitness 1210636007198134273 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 18:58:11 +0000 2019',text: '(SENT: Neutral)   ‍  ‍  Busy Mums Of Tameside   ‍  ‍   ⠀⠀ We Are Excited To Announce We Are Launching Another 30 Day Shape Up For Mum s W… <a href="https://t.co/NBytDbIHhI" target="_blank"> link </a>',},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  id1210636159711363073: {center: {lat: 53.40597588, lng: -2.98068523},color: '#DFBB27',user: 'badryzza 1210636159711363073 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 18:58:47 +0000 2019',text: '(SENT: Negative) I m at Liverpool - @visitliverpool in Liverpool <a href="https://t.co/n9fRCkePES" target="_blank"> link </a>',},
+
+
+
+
+
+
+
+
+
+
+  id1210636279823699971: {center: {lat: 51.50711486, lng: -0.12731805},color: '#DFBB27',user: 'BdexEntz 1210636279823699971 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 18:59:16 +0000 2019',text: '(SENT: Negative) #america rapper @rickyrozay arrived in #ghana #ghana     #richforever   #bdexentertainment #bdextv @ London, United K… <a href="https://t.co/LQqiz1Be3z" target="_blank"> link </a>',},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  id1210636537249050630: {center: {lat: 52.232222, lng: 21.008333},color: '#DFBB27',user: 'pidybi 1210636537249050630 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 19:00:17 +0000 2019',text: '(SENT: Negative) WATCH: Moment MOLOTOV COCKTAILS fly & set ablaze office of Brazilian comedy group... <a href="https://t.co/GCeQtR3x4t" target="_blank"> link </a>',},
+
+
+
+
+
+
+
+
+
+
+  id1210636598800343040: {center: {lat: 52.82128814, lng: -2.11299193},color: '#DFBB27',user: 'ThisIsGascoigne 1210636598800343040 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 19:00:32 +0000 2019',text: '(SENT: Negative) Pictures after Christmas/Boxing Day. —————————————————— Let s face facts here your gonna eat junk at Christmas if y… <a href="https://t.co/3Ih4D6b2Qo" target="_blank"> link </a>',},
+
+
+
+
+  id1210636624117293057: {center: {lat: 41.38482113, lng: 2.1965525},color: '#DFBB27',user: 'djCamiloFranco 1210636624117293057 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 19:00:38 +0000 2019',text: '(SENT: Negative) Who is coming to dance with me all night long tonight at my last set of 2019 at cdlcbarcelona ? Carpe Diem or die!… <a href="https://t.co/40HqAUJdSY" target="_blank"> link </a>',},
+
+
+
+
+
+
+
+  id1210634762202710016: {center: {lat: 52.74037104, lng: -2.72450209},color: '#DFBB27',user: 'florist_1 1210634762202710016 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 18:53:14 +0000 2019',text: '(SENT: Negative) Congratulations to all that got engaged over The Festive season, Julie would love to be a part of your big day, if… <a href="https://t.co/p30HzaQPnW" target="_blank"> link </a>',},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  id1210636759702396928: {center: {lat: 39.07004551, lng: -8.87455642},color: '#DFBB27',user: '_catarinafs 1210636759702396928 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 19:01:10 +0000 2019',text: '(SENT: Negative) You work it like it’s Prada baby em Azambuja/Lisbon <a href="https://t.co/Y93AxiX1XH" target="_blank"> link </a>',},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  id1210636875767144449: {center: {lat: 41.3894, lng: 2.1683},color: '#DFBB27',user: '25_katiuska 1210636875767144449 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 19:01:38 +0000 2019',text: '(SENT: Neutral) Acaba de publicar una foto en Barcelona, Spain <a href="https://t.co/8NNgDBa95C" target="_blank"> link </a>',},
+
+  id1210636889994207238: {center: {lat: 41.3894, lng: 2.1683},color: '#DFBB27',user: 'MarkBoltuc 1210636889994207238 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 19:01:41 +0000 2019',text: '(SENT: Negative) First day of training! #usyfbarca20 @ Barcelona, Spain <a href="https://t.co/KKnXbPNuT0" target="_blank"> link </a>',},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  id1210637001336205312: {center: {lat: 41.3894, lng: 2.1683},color: '#DFBB27',user: 'TalentedMrSalas 1210637001336205312 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 19:02:08 +0000 2019',text: '(SENT: Negative)    Franchise Friday    . Buying a Franchise is like buying a business in a box . Kind of like Ikea, but instead of fu… <a href="https://t.co/2mvQg3nJY6" target="_blank"> link </a>',},
+
+
+
+
+  id1210637035066642432: {center: {lat: 47.18883301, lng: 8.47431945},color: '#DFBB27',user: 'Crazy_Mave 1210637035066642432 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 19:02:16 +0000 2019',text: '(SENT: Neutral) Entertainment is our passion! Performances, Coachings and Workshops, stage productions.  <a href="https://t.co/P5LluHVHw3…" target="_blank"> link </a><a href="https://t.co/NSa5EWMIYM" target="_blank"> link </a>',},
+
+
+
+  id1210637069694816257: {center: {lat: 41.4035796, lng: 2.17393062},color: '#DFBB27',user: 'Traveloshoot 1210637069694816257 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 19:02:24 +0000 2019',text: '(SENT: Neutral) #Traveloshoot #yourshotphotographer #youtubeindia #youtubespain #barcelona     #spain     #beyourownboss #lovequotes… <a href="https://t.co/78CWzVi1mw" target="_blank"> link </a>',},
+
+  id1210634801285390338: {center: {lat: 44.93035, lng: -0.12956},color: '#DFBB27',user: 'EdWins316 1210634801285390338 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 18:53:23 +0000 2019',text: '(SENT: Negative) These are proving pretty popular. And they’re awesome fun to do!!  Your pet with a hat on..  crowns    seem like the… <a href="https://t.co/YMiaTjsKZ2" target="_blank"> link </a>',},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  id1210637244895256576: {center: {lat: 55.85948808, lng: -4.36831345},color: '#DFBB27',user: 'originsfitness 1210637244895256576 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 19:03:06 +0000 2019',text: '(SENT: Negative) Ate too much? Tanned a whole box of after eights? Destroyed several selection boxes? Ate your body weight in cheese… <a href="https://t.co/NPifK2siwt" target="_blank"> link </a>',},
+
+
+
+
+
+
+
+
+
+
+
+  id1210637377632456704: {center: {lat: 41.3894, lng: 2.1683},color: '#DFBB27',user: '25_katiuska 1210637377632456704 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 19:03:38 +0000 2019',text: '(SENT: Neutral) #party#amigos#copas en Barcelona, Spain <a href="https://t.co/sbk3JUQwXu" target="_blank"> link </a>',},
+
+
+
+  id1210637409236340736: {center: {lat: 40.4, lng: -3.68333},color: '#DFBB27',user: 'EyPriTv 1210637409236340736 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 19:03:45 +0000 2019',text: '(SENT: Negative) <a href="https://t.co/WnbMFlEiQ7" target="_blank"> link </a>Suscríbete a mi canal de YouTube totalmente gratis en el 2020 ya no podrás                         … <a href="https://t.co/KJ0tOdhu3l" target="_blank"> link </a>',},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  id1210637698735726604: {center: {lat: 37.17459042, lng: -3.58452225},color: '#DFBB27',user: 'JeremyGranoff 1210637698735726604 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 19:04:54 +0000 2019',text: '(SENT: Neutral) The Moor the merrier @ La Alhambra, Granada, España <a href="https://t.co/rpN9beInIk" target="_blank"> link </a>',},
+
+
+  id1210637732885778434: {center: {lat: 51.65898049, lng: -0.02788352},color: '#DFBB27',user: 'trainwised 1210637732885778434 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 19:05:02 +0000 2019',text: '(SENT: Negative) @trainwised Crafting the upcoming masters of their craft.   -  The version of the triceps kickback that is not only… <a href="https://t.co/UDy0s4wMew" target="_blank"> link </a>',},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  id1210637925479862272: {center: {lat: 51.5, lng: -0.11666667},color: '#DFBB27',user: 'charlatina 1210637925479862272 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 19:05:48 +0000 2019',text: '(SENT: Negative) Gorgeous & practical ~ What’s not to love?          . . . Boots: ariateuropecountry ariateurope Socks: @houseofcheviot… <a href="https://t.co/DKMK1YBLKT" target="_blank"> link </a>',},
+  id1210637933469949958: {center: {lat: 51.52002112, lng: -0.0760311},color: '#DFBB27',user: 'TheGrocerE1 1210637933469949958 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 19:05:50 +0000 2019',text: '(SENT: Negative) On a night like this you cannot go wrong with a classic Sausage  n  mash and a pint of a great Lager! . . . . . . .… <a href="https://t.co/VzKoT6VG6V" target="_blank"> link </a>',},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  id1210638218951090178: {center: {lat: 51.075207, lng: -1.808763},color: '#DFBB27',user: 'noodlebarnet88 1210638218951090178 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 19:06:58 +0000 2019',text: '(SENT: Negative) More yummy food. I actually helped for once lol. Hurting now though like maaaaddd (@ Rachels Family Dining Room Tab… <a href="https://t.co/8zRl7nAOHG" target="_blank"> link </a>',},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  id1210638385599123463: {center: {lat: 51.12835, lng: -2.74753},color: '#DFBB27',user: 'OskaZaky 1210638385599123463 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 19:07:38 +0000 2019',text: '(SENT: Negative) A hook I wrote in a small park in Hollywood reflecting on the shitty love life I had in 2019    - ft my knuckles aft… <a href="https://t.co/9316TI5558" target="_blank"> link </a>',},
+  id1210638386123423744: {center: {lat: 39.54834763, lng: 2.7315753},color: '#DFBB27',user: 'fernando_bayona 1210638386123423744 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 19:07:38 +0000 2019',text: '(SENT: Negative) Mallorca - Barcelona #mallorca #barcelona #airport #adidas #black en Mallorca Airport Aerport De Palma De Mallorca <a href="https://t.co/jR5GFqdgzb" target="_blank"> link </a>',},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  id1210638882192183296: {center: {lat: 52.205328, lng: 0.121708},color: '#DFBB27',user: 'Megatron1002 1210638882192183296 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 19:09:36 +0000 2019',text: '(SENT: Negative) New slippers, day 4 of a mostly prosecco diet and I couldn t feel happier! I love these days in-between Christmas a… <a href="https://t.co/TIDbcSEq5x" target="_blank"> link </a>',},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  id1210635027815505920: {center: {lat: 54.96992435, lng: -1.59962},color: '#DFBB27',user: 'EskiDJcity 1210635027815505920 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 18:54:17 +0000 2019',text: '(SENT: Negative) My bitch love coco, ooh back baby wooooooooo - Pop Smoke @j0sh_jvl3gw4 @ Quayside, Newcastle upon Tyne <a href="https://t.co/ZfHD93BvLv" target="_blank"> link </a>',},
+
+  id1210635040960524289: {center: {lat: 51.55981112, lng: 0.07211425},color: '#DFBB27',user: 'ExchangeIlford 1210635040960524289 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 18:54:20 +0000 2019',text: '(SENT: Negative) Give the gift of love to your first, your last, your everything. This sophisticated 9ct rose gold and silver pendan… <a href="https://t.co/xqhI6GYb9Q" target="_blank"> link </a>',},
+
+
+
+
+
+
+
+
+  id1210635117070303232: {center: {lat: 48.7945, lng: 9.06129},color: '#DFBB27',user: 'ErrantStrategry 1210635117070303232 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 18:54:39 +0000 2019',text: '(SENT: Negative) Tastes like Belgium. Roasty caramel malts. Sweet. Smooth. - Drinking a Pater 6 (2019) by Brouwerij St. Bernardus @… <a href="https://t.co/5zaOY41aDP" target="_blank"> link </a>',},
+
+
+
+
+  id1210635158304559105: {center: {lat: 41.40669249, lng: 2.14448512},color: '#DFBB27',user: 'DatiuSalvia 1210635158304559105 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 18:54:48 +0000 2019',text: '(SENT: Neutral) Acabo d’arribar de la pelu #sam #caniche #hairdresser en el Putget i Farró, Barcelona <a href="https://t.co/tKeslQ8CiQ" target="_blank"> link </a>',},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  id1210635346523959299: {center: {lat: 53.3927, lng: -3.02602},color: '#DFBB27',user: 'Mr_Male_Mixer 1210635346523959299 ·+',application: 'AIW-G12-TwitterAnalysis',time: 'Fri Dec 27 18:55:33 +0000 2019',text: '(SENT: Neutral) Chilled Out Friday!  I m Having A Really Awesome Chilled Out Friday And I m Absolutely Loving My Day&Night So Far A… <a href="https://t.co/7lbvG7CCp4" target="_blank"> link </a>',},
+
+
+
+
+
+};
+
+function showNewRect(user, device, time, text) {
+  	//alert(this.fillColor);
+	//alert(x);
+	document.getElementById('info').innerHTML = 
+							"<b>User:</b> <a href=\"https://twitter.com/"+user+"\" target=\"_blank\">"+user+"</a>"+
+							'<br><b>Application: </b>' + device +
+							'<br><b>Time: </b>' + time +
+							'<br><b>Text: </b>' + text;
+                                      
+}
+
+function initMap() {
+  // Create the map.
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 13,
+    center: {lat: 41.403184, lng: 2.187346},
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+
+  // Construct the circle for each value in citymap.
+  // Note: We scale the area of the circle based on the population.
+  for (var city in citymap) {
+    // Add the circle for this city to the map.
+    var cityCircle = new google.maps.Circle({
+      strokeColor: citymap[city].color,
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: citymap[city].color,
+      fillOpacity: 0.35,
+      map: map,
+      center: citymap[city].center,
+      radius: 50
+    });
+
+	//cityCircle.addListener('click', showNewRect);
+
+ 	var createCallback = function(innerCity){
+    	return function() {showNewRect(	citymap[innerCity].user,
+										citymap[innerCity].device,
+										citymap[innerCity].time, 
+										citymap[innerCity].text);};
+	};
+
+    cityCircle.addListener("click", createCallback(city), false);
+
+  }
+
+}
+
+var createAdd = function () {
+    var counter = 0;
+    return function () {return counter += 1;}
+};
+
+var add = createAdd();
+
+
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdzUfeMJgjYUwX9glKXn3tUCStVfJ592g&signed_in=true&callback=initMap"></script>
+  </body>
+</html>

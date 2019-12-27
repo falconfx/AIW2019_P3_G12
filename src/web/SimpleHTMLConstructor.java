@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import twitteranalysis.TweetObject;
+import static web.CreateMapToWorkOut.getMapsCode;
 
 
 /**
@@ -33,10 +34,8 @@ public class SimpleHTMLConstructor {
     );    
     
     public void makeWeb() throws FileNotFoundException, UnsupportedEncodingException, IOException{
-        String header, body, footer;
-        List<TweetObject> tOBody = new ArrayList<TweetObject>();
+        String header, footer;
         OutputStreamWriter osw;
-        SimpleHTMLExtractor bodyExtractor = new SimpleHTMLExtractor();
         File fout=new File("."+File.separator+"web"+File.separator+
                 "index.html");
         FileOutputStream writer=new FileOutputStream(fout);
@@ -51,10 +50,13 @@ public class SimpleHTMLConstructor {
             osw.append(makeBody());
 
             osw.append(footer+"\n");
-            osw.flush();
+            osw.flush();        
 
 
             osw.close();
+
+     
+            
         } catch (IOException ex) {
             Logger.getLogger(SimpleHTMLConstructor.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -81,28 +83,19 @@ public class SimpleHTMLConstructor {
     public static String getFirstBody(String nameWeb){
         String body = "";
         
-        body += "<li> <a class=\"page-scroll\" href=\"#\" onclick=\"showStuff('"+nameWeb+"')\">"+nameWeb+"</a> </li>\n";
+
+        if(nameWeb.equals("HeatMap")){
+            body += "<li> <a class=\"page-scroll\" href=\"maps/heat-map-out.html\" target=\"_blank\">"+nameWeb+"</a> </li>\n";
+        }
+        else if(nameWeb.equals("CircleMap")){
+            body += "<li> <a class=\"page-scroll\" href=\"maps/circle-map-out.html\" target=\"_blank\">"+nameWeb+"</a> </li>\n";
+        }else{
+            body += "<li> <a class=\"page-scroll\" href=\"#\" onclick=\"showStuff('"+nameWeb+"')\">"+nameWeb+"</a> </li>\n";
+        }
         
         return body;
     }
    
-    /*
-    public String getSecondBody( String nameWeb){
-        String body = "";
-
-        body  = body + "<div style=\"display:none;\" class=\"contentTabulator\" id=\""+nameWeb+"\">";
-                for(NewsSummarized nSummarizedList : webContent){
-                    body +=  "<div class=\"notice\">";
-                    body += "<a href="+ nSummarizedList.getPageLink() +" target=\"_blank\"><h2>"+nSummarizedList.getPageTitle()+"</h2></a>"+"\n";
-                    body +=  "<p>" + nSummarizedList.getSummarizedContent() + "</p>";
-                    body += "<a href="+ nSummarizedList.getPageLink() +" class=\"btn btn-default btn-lg page-scroll\">Read More</a>";
-                    body +=  "</div>";
-                }
-                body +=  "</div>";
-        
-        return body;
-    }
-    */
      
     public String getFooter(){
         String filePath = "./web/components/footer.html";
@@ -151,8 +144,11 @@ public class SimpleHTMLConstructor {
         content += htmlExtractor.extractUsersMentioned();
         // Extract Mentioned Users
         content += htmlExtractor.extractDate();
+        
+        // Heat and Circle Map Extraction
+        getMapsCode();
 
-  
+
         
         return content;
     

@@ -51,10 +51,7 @@ public class Sentiment {
         else if(countSentiment < 0){ sentimentResult = "Negative"; }
         else{ sentimentResult = "Neutral"; }        
        
-        
-        
-        
-        
+
         
         document.getFeatures().put("sentiment", sentimentResult);
         document.getFeatures().put("date", created_at);

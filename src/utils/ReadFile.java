@@ -21,9 +21,11 @@ public class ReadFile {
     
     public void main(String compressedPath, String uncompressedPath ) throws FileNotFoundException {        
             ArrayList<String> topics = new ArrayList<String> ();
-            topics.add("politics");
-            topics.add("champions");
-            topics.add("games");
+            //topics.add("politics");
+            //topics.add("champions");
+            //topics.add("games");
+            //topics.add("championsGamesPoliticsAnyFilter");
+            topics.add("championsGamesPolitics");
 
             
             for(String topicElement : topics){
