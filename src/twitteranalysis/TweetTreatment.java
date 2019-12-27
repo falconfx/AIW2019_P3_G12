@@ -183,8 +183,8 @@ public class TweetTreatment {
         
         //Probar hashmap
         hashTable = new HashMap<String, HashtagObject>();
-        hashTable = ClassifierHashtags(finalListTweet,firstHashtags,secondHashtags, thirdHashtags);
-        //printHashtagsHashMap(hashTable);
+        hashTable = ClassifierHashtags(finalListTweet,firstHashtags, secondHashtags, thirdHashtags);
+        printHashtagsHashMap(hashTable);
         
         //Probar datemap
        /* HashMap<String, SentimentObject> dateTable = new HashMap<String, SentimentObject>();
@@ -303,7 +303,7 @@ public class TweetTreatment {
     }
 
     
-   public static HashMap ClassifierHashtags (List<TweetObject> tweetsList, List<String> HashtagsList1, List<String> HashtagsList2, List<String> HashtagsList3){
+   public static HashMap ClassifierHashtags (List<TweetObject> tweetsList, List<String> HashtagsList1, List<String> HashtagsList2, List<String> HashtagsList3 ){
     
     List<String> AllHashtags = new ArrayList<String>();
     AllHashtags.addAll(HashtagsList1);
@@ -311,7 +311,7 @@ public class TweetTreatment {
     AllHashtags.addAll(HashtagsList3);
     
     HashMap<String, HashtagObject> hashTable = new HashMap<String, HashtagObject>();
-    
+    /*
     for(String hashtag : AllHashtags){
         HashtagObject hashtagObject = new HashtagObject();
         hashtagObject.setNameHashtag(hashtag);
@@ -323,19 +323,46 @@ public class TweetTreatment {
         //hashtagObject.setNumberOfNeutrals(init_numbers);
         hashTable.put(hashtag, hashtagObject);
     }
-    
+    */
     for(TweetObject tweet : tweetsList){
         for(String hashtag : tweet.getHashtagObject().getHastagsNames()) {
-            if(hashTable.containsKey(hashtag)){
-                if(tweet.getSentiment().equals("Positive")){
-                    hashTable.get(hashtag).getSentiments().setPositive(hashTable.get(hashtag).getSentiments().getPositive() + 1);
-                    //hashTable.get(hashtag).setNumberOfPositives(hashTable.get(hashtag).getNumberOfPositives() + 1);
-                }else if(tweet.getSentiment().equals("Negative")){
-                    hashTable.get(hashtag).getSentiments().setNegative(hashTable.get(hashtag).getSentiments().getNegative() + 1);
-                    //hashTable.get(hashtag).setNumberOfNegatives(hashTable.get(hashtag).getNumberOfNegatives() + 1);
-                }else if(tweet.getSentiment().equals("Neutral")){
-                    hashTable.get(hashtag).getSentiments().setNeutral(hashTable.get(hashtag).getSentiments().getNeutral() + 1);
-                    //hashTable.get(hashtag).setNumberOfNeutrals(hashTable.get(hashtag).getNumberOfNeutrals() + 1);
+            
+            if(AllHashtags.contains(hashtag)){
+                if(hashTable.containsKey(hashtag)){
+                    if(tweet.getSentiment().equals("Positive")){
+                        hashTable.get(hashtag).getSentiments().setPositive(hashTable.get(hashtag).getSentiments().getPositive() + 1);
+                        //hashTable.get(hashtag).setNumberOfPositives(hashTable.get(hashtag).getNumberOfPositives() + 1);
+                    }else if(tweet.getSentiment().equals("Negative")){
+                        hashTable.get(hashtag).getSentiments().setNegative(hashTable.get(hashtag).getSentiments().getNegative() + 1);
+                        //hashTable.get(hashtag).setNumberOfNegatives(hashTable.get(hashtag).getNumberOfNegatives() + 1);
+                    }else if(tweet.getSentiment().equals("Neutral")){
+                        hashTable.get(hashtag).getSentiments().setNeutral(hashTable.get(hashtag).getSentiments().getNeutral() + 1);
+                        //hashTable.get(hashtag).setNumberOfNeutrals(hashTable.get(hashtag).getNumberOfNeutrals() + 1);
+                    }
+                }else{
+                    HashtagObject hashtagObject = new HashtagObject();
+                    hashtagObject.setNameHashtag(hashtag);
+
+
+                    if(tweet.getSentiment().equals("Positive")){
+                        hashtagObject.getSentiments().setPositive(1);
+                        hashtagObject.getSentiments().setNegative(init_numbers);
+                        hashtagObject.getSentiments().setNeutral(init_numbers);
+                        hashTable.put(hashtag, hashtagObject);
+
+                    }else if(tweet.getSentiment().equals("Negative")){
+                        hashtagObject.getSentiments().setPositive(init_numbers);
+                        hashtagObject.getSentiments().setNegative(1);
+                        hashtagObject.getSentiments().setNeutral(init_numbers);
+                        hashTable.put(hashtag, hashtagObject);
+
+                    }else if(tweet.getSentiment().equals("Neutral")){
+
+                        hashtagObject.getSentiments().setPositive(init_numbers);
+                        hashtagObject.getSentiments().setNegative(init_numbers);
+                        hashtagObject.getSentiments().setNeutral(1);
+                        hashTable.put(hashtag, hashtagObject);
+                    }
                 }
             }
         }
@@ -369,32 +396,34 @@ public class TweetTreatment {
             Date date = tweet.getDateTime();
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
             String strDate = dateFormat.format(date);
-            if(dateTable.containsKey(strDate)){
+            if(!tweet.getSentiment().isEmpty()){
+                if(dateTable.containsKey(strDate)){
                 
-                if(tweet.getSentiment().equals("Positive")){
-                    dateTable.get(strDate).setPositive(dateTable.get(strDate).getPositive() + 1);
-                }else if(tweet.getSentiment().equals("Negative")){
-                    dateTable.get(strDate).setNegative(dateTable.get(strDate).getNegative() + 1);
-                }else if(tweet.getSentiment().equals("Neutral")){
-                    dateTable.get(strDate).setNeutral(dateTable.get(strDate).getNeutral() + 1);
-                }
+                    if(tweet.getSentiment().equals("Positive")){
+                        dateTable.get(strDate).setPositive(dateTable.get(strDate).getPositive() + 1);
+                    }else if(tweet.getSentiment().equals("Negative")){
+                        dateTable.get(strDate).setNegative(dateTable.get(strDate).getNegative() + 1);
+                    }else if(tweet.getSentiment().equals("Neutral")){
+                        dateTable.get(strDate).setNeutral(dateTable.get(strDate).getNeutral() + 1);
+                    }
                
-            }else{
-                SentimentObject sentiment = new SentimentObject();
-                if(tweet.getSentiment().equals("Positive")){
-                    sentiment.setPositive(1);
-                    sentiment.setNegative(init_numbers);
-                    sentiment.setNeutral(init_numbers);
-                }else if(tweet.getSentiment().equals("Negative")){
-                    sentiment.setPositive(init_numbers);
-                    sentiment.setNegative(1);
-                    sentiment.setNeutral(init_numbers);
-                }else if(tweet.getSentiment().equals("Neutral")){
-                    sentiment.setPositive(init_numbers);
-                    sentiment.setNegative(init_numbers);
-                    sentiment.setNeutral(1);
-                }
-                dateTable.put(strDate, sentiment);
+                }else{
+                    SentimentObject sentiment = new SentimentObject();
+                    if(tweet.getSentiment().equals("Positive")){
+                        sentiment.setPositive(1);
+                        sentiment.setNegative(init_numbers);
+                        sentiment.setNeutral(init_numbers);
+                    }else if(tweet.getSentiment().equals("Negative")){
+                        sentiment.setPositive(init_numbers);
+                        sentiment.setNegative(1);
+                        sentiment.setNeutral(init_numbers);
+                    }else if(tweet.getSentiment().equals("Neutral")){
+                        sentiment.setPositive(init_numbers);
+                        sentiment.setNegative(init_numbers);
+                        sentiment.setNeutral(1);
+                    }
+                    dateTable.put(strDate, sentiment);
+                } 
             }
         }
         
