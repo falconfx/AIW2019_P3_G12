@@ -179,22 +179,22 @@ public class TweetTreatment {
         
        
 
-        tweetsTesting();
+        //tweetsTesting();
         
         //Probar hashmap
         hashTable = new HashMap<String, HashtagObject>();
         hashTable = ClassifierHashtags(finalListTweet,firstHashtags,secondHashtags, thirdHashtags);
-        printHashtagsHashMap(hashTable);
+        //printHashtagsHashMap(hashTable);
         
         //Probar datemap
-        HashMap<String, SentimentObject> dateTable = new HashMap<String, SentimentObject>();
+       /* HashMap<String, SentimentObject> dateTable = new HashMap<String, SentimentObject>();
         dateTable = ClassifierDate(finalListTweet);
-        printClassifierDate(dateTable);
+        printClassifierDate(dateTable);/
         
         //Probar usersmap
-        HashMap<String, SentimentObject> usersTable = new HashMap<String, SentimentObject>();
+        /*HashMap<String, SentimentObject> usersTable = new HashMap<String, SentimentObject>();
         usersTable = ClassifierUserMention(finalListTweet);
-        printClassifierUserMention(usersTable);
+        printClassifierUserMention(usersTable);*/
     }
 
     public static void setHashtag(  Long getStartNode,

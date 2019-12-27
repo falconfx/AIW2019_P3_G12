@@ -85,7 +85,7 @@ public class SimpleHTMLConstructor {
         return contentBuilder.toString();
     }
 
-    public String getFirstBody(String nameWeb){
+    public static String getFirstBody(String nameWeb){
         String body = "";
         
         body += "<li> <a class=\"page-scroll\" href=\"#\" onclick=\"showStuff('"+nameWeb+"')\">"+nameWeb+"</a> </li>\n";
@@ -132,12 +132,16 @@ public class SimpleHTMLConstructor {
         String content = "";
         
        
-            
+ 
         for(String tabName : webTags){
-            content +=  htmlExtractor.extractContent(tabName);
+            content +=  getFirstBody(tabName);
         }
+        /*for(String tabName : webTags){
+            content +=  htmlExtractor.extractContent(tabName);
+        }*/
 
-        content += 
+        content += "         </ul>\n" +
+            "            </div>\n" +            
             "        </div>\n" +
             "    </nav>\n" +
             "</div>\n" +
@@ -147,7 +151,9 @@ public class SimpleHTMLConstructor {
             "        <br>\n" +
             "        <p>Formado por: Kevin Romero, Víctor Jordán y Sergi Linares</p>\n" +
             "    </div>\n" +
-            "</div></body></html>";
+            "</div>\n";
+        
+        
 /*
         for(News nList : newsList){
             content +=  htmlExtractor.extractSecondContent(nList.getPageLink(), nList.getPageName(), application);
