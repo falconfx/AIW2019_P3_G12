@@ -56,6 +56,7 @@ public class TweetTreatment {
     
     public static HashMap<String, HashtagObject> hashTable;
     public static HashMap<String, SentimentObject> dateTable;
+    public static HashMap<String, SentimentObject> usersTable;
 
 
     // Champions hashtags
@@ -193,9 +194,9 @@ public class TweetTreatment {
         printClassifierDate(dateTable);
         
         //Probar usersmap
-        /*HashMap<String, SentimentObject> usersTable = new HashMap<String, SentimentObject>();
+        usersTable = new HashMap<String, SentimentObject>();
         usersTable = ClassifierUserMention(finalListTweet);
-        printClassifierUserMention(usersTable);*/
+        printClassifierUserMention(usersTable);
     }
 
     public static void setHashtag(  Long getStartNode,
@@ -223,7 +224,7 @@ public class TweetTreatment {
             featureMap = document.getFeatures();
             sentiment = (String) featureMap.get("sentiment");
             dateTweet = (String) featureMap.get("date");
-            //userName = (String) featureMap.get("user");
+            userName = (String) featureMap.get("mentionedUsers");
             
             simpleAnnotation = iteratorH.next();
             getStartNode = simpleAnnotation.getStartNode().getOffset();
@@ -240,7 +241,7 @@ public class TweetTreatment {
         hashtagObject.setHastagsNames(hashtagsList);
         tweetObject.setHashtagObject(hashtagObject);
         tweetObject.setSentiment(sentiment);
-        //tweetObject.setUserName(userName);
+        tweetObject.setUserName(userName);
         tweetObject.setDateTime(date);
 
         listTweetObject.add(tweetObject);
@@ -297,11 +298,14 @@ public class TweetTreatment {
         return hashTable;
     }
     
+    public HashMap<String, SentimentObject> getHashtagMentionedUsersInfo(){
+        return usersTable;
+    }
+        
     public HashMap<String, SentimentObject> getHashtagDateInfo(){
         return dateTable;
     }
 
-    
    public static HashMap ClassifierHashtags (List<TweetObject> tweetsList, List<String> HashtagsList1, List<String> HashtagsList2, List<String> HashtagsList3 ){
     
     List<String> AllHashtags = new ArrayList<String>();

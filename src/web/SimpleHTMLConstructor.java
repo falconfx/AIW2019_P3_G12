@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package web;
 
-import com.sun.syndication.io.FeedException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,13 +13,12 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Stream;
-//import aiw2019_p2_g12.NewsSummarized;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import twitteranalysis.TweetObject;
-import twitteranalysis.TweetTreatment;
-import web.SimpleHTMLExtractor;
+
+
 /**
  *
  * @author u124320
@@ -92,23 +85,24 @@ public class SimpleHTMLConstructor {
         
         return body;
     }
-    
-    public String getSecondBody(/*List<NewsSummarized> webContent,*/ String nameWeb){
+   
+    /*
+    public String getSecondBody( String nameWeb){
         String body = "";
 
         body  = body + "<div style=\"display:none;\" class=\"contentTabulator\" id=\""+nameWeb+"\">";
-                /*for(NewsSummarized nSummarizedList : webContent){
+                for(NewsSummarized nSummarizedList : webContent){
                     body +=  "<div class=\"notice\">";
                     body += "<a href="+ nSummarizedList.getPageLink() +" target=\"_blank\"><h2>"+nSummarizedList.getPageTitle()+"</h2></a>"+"\n";
                     body +=  "<p>" + nSummarizedList.getSummarizedContent() + "</p>";
                     body += "<a href="+ nSummarizedList.getPageLink() +" class=\"btn btn-default btn-lg page-scroll\">Read More</a>";
                     body +=  "</div>";
-                }*/
+                }
                 body +=  "</div>";
         
         return body;
     }
-    
+    */
      
     public String getFooter(){
         String filePath = "./web/components/footer.html";
@@ -136,9 +130,7 @@ public class SimpleHTMLConstructor {
         for(String tabName : webTags){
             content +=  getFirstBody(tabName);
         }
-        /*for(String tabName : webTags){
-            content +=  htmlExtractor.extractContent(tabName);
-        }*/
+
 
         content += "         </ul>\n" +
             "            </div>\n" +            

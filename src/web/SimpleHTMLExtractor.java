@@ -201,7 +201,55 @@ public class SimpleHTMLExtractor {
         
     public static String extractUsersMentioned(){
     
-        return "";
+        String content = "";
+        TweetTreatment tTreatment = new TweetTreatment();
+        HashMap<String, SentimentObject> hashMapMentionedUsers = tTreatment.getHashtagMentionedUsersInfo();
+        content += "<div class=\"contentTabulator\" id=\"UsersMentioned\" style=\"display:none;padding:2%;\">\n<center>";
+            for(Object s: hashMapMentionedUsers.keySet()){
+                if(!s.equals("")){
+                    content += "<div id=\"chart_div" + s + "\" class=\"chart\" ></div>\n";
+                }
+            }
+        content += "</center>\n</div>\n\n";
+
+        for(Object s: hashMapMentionedUsers.keySet()){
+            SentimentObject v = (SentimentObject) hashMapMentionedUsers.get(s);
+            int positive = v.getPositive();
+            int negative = v.getNegative();
+            int neutral = v.getNeutral();
+        
+        
+        content +=   "<script type='text/javascript'>\n" +
+                    "\n" +
+                    "      google.charts.load('current', {'packages':['corechart']});\n" +
+                    "\n" +
+                    "      google.charts.setOnLoadCallback(drawChart);\n" +
+                    "\n" +
+                    "      function drawChart() {\n" +
+                    "\n" +
+                    "        var data = new google.visualization.DataTable();\n" +
+                    "        data.addColumn('string', 'Type');\n" +
+                    "        data.addColumn('number', 'Quantity');\n" +
+                    "        data.addRows([\n" +
+                    "          ['Positive', "+ positive + "],\n" +
+                    "          ['Negative', "+ negative + "],\n" +
+                    "          ['Neutrals', "+ neutral + "],\n" +
+                    "        ]);\n" +
+                    "\n" +
+                    "        // Set chart options\n" +
+                    "        var options = {'title':'"+ s + "',\n" +
+                    "                       'width':400,\n" +
+                    "                       'height':300};\n" +
+                    "\n" +
+                    "        // Instantiate and draw our chart, passing in some options.\n" +
+                    "        var chart = new google.visualization.PieChart(document.getElementById('chart_div"+s+"'));\n" +
+                    "        chart.draw(data, options);\n" +
+                    "      }\n" +
+                    "    </script>\n";
+        
+        }
+        return content;
+
     }
     
         
@@ -215,7 +263,6 @@ public class SimpleHTMLExtractor {
                 content += "<div id=\"chart_div" + s + "\" class=\"chart\" ></div>\n";
             }
         content += "</center>\n</div>\n\n";
-        content += "<script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>\n";
 
         for(Object s: hashMapDate.keySet()){
             SentimentObject v = (SentimentObject) hashMapDate.get(s);
