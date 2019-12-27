@@ -53,6 +53,8 @@ public class TweetTreatment {
     public static List<TweetObject> finalListTweet = new ArrayList<TweetObject>();
     
     static final int init_numbers = 0;
+    
+    public static HashMap<String, HashtagObject> hashTable;
 
 
     // Champions hashtags
@@ -177,22 +179,22 @@ public class TweetTreatment {
         
        
 
-        //tweetsTesting();
+        tweetsTesting();
         
         //Probar hashmap
-        //HashMap<String, HashtagObject> hashTable = new HashMap<String, HashtagObject>();
-        //hashTable = ClassifierHashtags(finalListTweet,firstHashtags,secondHashtags, thirdHashtags);
-        //printHashtagsHashMap(hashTable);
+        hashTable = new HashMap<String, HashtagObject>();
+        hashTable = ClassifierHashtags(finalListTweet,firstHashtags,secondHashtags, thirdHashtags);
+        printHashtagsHashMap(hashTable);
         
         //Probar datemap
-        HashMap<String, Sentiments> dateTable = new HashMap<String, Sentiments>();
+        HashMap<String, SentimentObject> dateTable = new HashMap<String, SentimentObject>();
         dateTable = ClassifierDate(finalListTweet);
         printClassifierDate(dateTable);
         
         //Probar usersmap
-        //HashMap<String, Sentiments> usersTable = new HashMap<String, Sentiments>();
-        //usersTable = ClassifierUserMention(finalListTweet);
-        //printClassifierUserMention(usersTable);
+        HashMap<String, SentimentObject> usersTable = new HashMap<String, SentimentObject>();
+        usersTable = ClassifierUserMention(finalListTweet);
+        printClassifierUserMention(usersTable);
     }
 
     public static void setHashtag(  Long getStartNode,
@@ -290,8 +292,8 @@ public class TweetTreatment {
         }
     }
     
-    public List<TweetObject> getTweetsPrint(){
-        return finalListTweet;
+    public HashMap<String, HashtagObject> getHashtagMap(){
+        return hashTable;
         /*
         List<String> tweets = new ArrayList<String>();
         
@@ -361,7 +363,7 @@ public class TweetTreatment {
     }
    
    public static HashMap ClassifierDate (List<TweetObject> tweetsList){
-        HashMap<String, Sentiments> dateTable = new HashMap<String, Sentiments>();
+        HashMap<String, SentimentObject> dateTable = new HashMap<String, SentimentObject>();
         
         for(TweetObject tweet : tweetsList){
             Date date = tweet.getDateTime();
@@ -378,7 +380,7 @@ public class TweetTreatment {
                 }
                
             }else{
-                Sentiments sentiment = new Sentiments();
+                SentimentObject sentiment = new SentimentObject();
                 if(tweet.getSentiment().equals("Positive")){
                     sentiment.setPositive(1);
                     sentiment.setNegative(init_numbers);
@@ -406,7 +408,7 @@ public class TweetTreatment {
         System.out.println("-------------------------------");
 
         for(Object s: dateTable.keySet()){
-            Sentiments v = (Sentiments) dateTable.get(s);
+            SentimentObject v = (SentimentObject) dateTable.get(s);
             int positive = v.getPositive();
             int negative = v.getNegative();
             int neutral = v.getNeutral();
@@ -419,7 +421,7 @@ public class TweetTreatment {
    
    
    public static HashMap ClassifierUserMention (List<TweetObject> tweetsList){
-        HashMap<String, Sentiments> usersTable = new HashMap<String, Sentiments>();
+        HashMap<String, SentimentObject> usersTable = new HashMap<String, SentimentObject>();
         
         for(TweetObject tweet : tweetsList){
             String name = tweet.getUserName();
@@ -434,7 +436,7 @@ public class TweetTreatment {
                 }
                
             }else{
-                Sentiments sentiment = new Sentiments();
+                SentimentObject sentiment = new SentimentObject();
                 if(tweet.getSentiment().equals("Positive")){
                     sentiment.setPositive(1);
                     sentiment.setNegative(init_numbers);
@@ -462,7 +464,7 @@ public class TweetTreatment {
         System.out.println("-------------------------------");
 
         for(Object s: usersTable.keySet()){
-            Sentiments v = (Sentiments) usersTable.get(s);
+            SentimentObject v = (SentimentObject) usersTable.get(s);
             int positive = v.getPositive();
             int negative = v.getNegative();
             int neutral = v.getNeutral();

@@ -1,7 +1,7 @@
     <script type="text/javascript">
       about.hide();
       hashTags.hide();
-      top10.hide();
+      usersMentioned.hide();
       date.hide();
       heatMap.hide();
       circleMap.hide();
@@ -10,42 +10,42 @@
       function showStuff(element)  {
         var about = $('#About');
         var hashTags = $('#Hashtags');
-        var top10 = $('#Top10');
+        var usersMentioned = $('#UsersMentioned');
         var date = $('#Date');
         var heatMap = $('#HeatMap');
         var circleMap = $('#CircleMap');
         if(element === "About"){
           hashTags.hide();
           about.show();
-          top10.hide();
+          usersMentioned.hide();
           date.hide();
           heatMap.hide();
           circleMap.hide();
         }else if(element === "Hashtags"){
           hashTags.show();
           about.hide();
-          top10.hide();
+          usersMentioned.hide();
           date.hide();
           heatMap.hide();
           circleMap.hide();     
         }else if(element === "Date"){
           hashTags.hide();
           about.hide();
-          top10.hide();
+          usersMentioned.hide();
           date.show();
           heatMap.hide();
           circleMap.hide();
         }else if(element === "HeatMap"){
           hashTags.hide();
           about.hide();
-          top10.hide();
+          usersMentioned.hide();
           date.hide();
           heatMap.show();
           circleMap.hide();
         }else if(element === "CircleMap"){
           hashTags.hide();
           about.hide();
-          top10.hide();
+          usersMentioned.hide();
           date.hide();
           heatMap.hide();
           circleMap.show();

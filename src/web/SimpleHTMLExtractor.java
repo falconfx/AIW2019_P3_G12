@@ -18,12 +18,15 @@ import gate.creole.ResourceInstantiationException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import java.util.Iterator;
 import java.util.List;
+import twitteranalysis.HashtagObject;
+import twitteranalysis.TweetTreatment;
 
 
 /**
@@ -33,7 +36,7 @@ import java.util.List;
 public class SimpleHTMLExtractor {
     
     //CallSUMMAGapp constructorGapp = new CallSUMMAGapp();
-    
+    /*
         
     public static String extractFromLaVanguardia(String url) throws IOException {
         String text="";
@@ -78,6 +81,9 @@ public class SimpleHTMLExtractor {
         
         return firstBody;
     }
+    */
+    
+    /*
     
     public String extractSecondContent(String urlWeb, String nameWeb, ConditionalSerialAnalyserController application) throws IOException, FeedException, IllegalArgumentException, ResourceInstantiationException {
         
@@ -87,8 +93,7 @@ public class SimpleHTMLExtractor {
         reader = new XmlReader(url);
         feed = new SyndFeedInput().build(reader);
         SimpleHTMLConstructor htmlConstructor = new SimpleHTMLConstructor();
-        /*List<NewsSummarized> newsPreSummarizedList = new ArrayList<NewsSummarized>();
-        List<NewsSummarized> newsSummarizedList = new ArrayList<NewsSummarized>();*/
+
         String content = "";
         String body = "";
        
@@ -102,32 +107,88 @@ public class SimpleHTMLExtractor {
             content = nameWeb.equals("LaVanguardia") ? 
                         extractFromLaVanguardia(link) : extractFromTheGuardian(link);
             if(!content.equals("")){
-                /*
-                newsPreSummarized.setPageBody(content);
-                newsPreSummarized.setPageLink(link);
-                newsPreSummarized.setPageTitle(title);
-                newsPreSummarized.setPageName(nameWeb);
-                newsPreSummarizedList.add(newsPreSummarized);*/
+
             }   
         }
-        /*
-        for(NewsSummarized nPreSummarizedList : newsPreSummarizedList){
-            NewsSummarized newsSummarized = new NewsSummarized();
-            newsSummarized.setSummarizedContent(
-                    constructorGapp.getTextNews(nPreSummarizedList.getPageBody()));
-            newsSummarized.setPageTitle(nPreSummarizedList.getPageTitle());
-            newsSummarized.setPageLink(nPreSummarizedList.getPageLink());
-            newsSummarizedList.add(newsSummarized);
-            
-            
-        }*/
-        
+
         //body = htmlConstructor.getSecondBody(newsSummarizedList, nameWeb);
        
                 
         return body;
 
+    }*/
+    
+    
+    public static String extractContent(String tabName){
+    
+        String content = "";
+        switch(tabName){
+            case "Hashtags":
+                content += extractHashtags();
+                break;
+            case "UsersMentioned":
+                content += extractUsersMentioned();
+                break;
+            case "Date":
+                content += extractDate();
+                break;
+            case "HeatMap":
+                content += extractHeatMap();
+                break;
+            case "CircleMap":
+                content += extractCircleMap();
+                break;
+        }
+        
+        return content;
     }
+    
+    
+    public static String extractHashtags(){
+        String content = "";
+        TweetTreatment tTreatment = new TweetTreatment();
+        HashMap<String, HashtagObject> hashMap = tTreatment.getHashtagMap();
+        
+        for(Object s: hashMap.keySet()){
+            HashtagObject v = (HashtagObject) hashMap.get(s);
+            int positive = v.getSentiments().getPositive();
+            int negative = v.getSentiments().getNegative();
+            int neutral = v.getSentiments().getNeutral();
+            
+            int addition = positive + negative + neutral;
+
+            content +=  s + " (" + addition +") ->" + " Positive: "+ positive + " Negative: "+negative+ " Neutral: "+neutral;
+        }
+        
+    
+        return content;
+    }
+    
+        
+    public static String extractUsersMentioned(){
+    
+        return "";
+    }
+    
+        
+    public static String extractDate(){
+    
+        return "";
+    }
+    
+        
+    public static String extractHeatMap(){
+    
+        return "";
+    }
+    
+    public static String extractCircleMap(){
+    
+        return "";
+    }
+    
+    
+
 }
 
     

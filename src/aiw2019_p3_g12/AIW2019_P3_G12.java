@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.stream.XMLStreamException;
 import twitteranalysis.TweetTreatment;
+import utils.ExtractSentiment;
 import web.SimpleHTMLConstructor;
 
 /**
@@ -45,6 +46,7 @@ public class AIW2019_P3_G12 {
 
             System.out.println("Choose from these choices");
             System.out.println("-------------------------\n");
+            System.out.println("0 - Generate sentiment lists of language");
             System.out.println("1 - Extract json lines");
             System.out.println("    (Remember put your zipped JSON inside jsonzipped/ folder)");
             System.out.println("2 - Put your own GAPP and process data (step 1 necessary)");
@@ -71,6 +73,11 @@ public class AIW2019_P3_G12 {
         System.setProperty("log4j.debug", "");
 
         switch(userChoice){
+            case 0:
+                ExtractSentiment sentimentExtraction = new ExtractSentiment();
+                sentimentExtraction.main();
+                System.out.println("All Ok -> /Search files into resources/sample_gazetteer folder");
+                break;
             case 1: 
                 ReadFile rf = new ReadFile();
                 rf.main(JSONCOMPRESSEDPATH, JSONUNCOMPRESSEDPATH);
@@ -89,7 +96,7 @@ public class AIW2019_P3_G12 {
                     Scanner keyboardGapp = new Scanner(System.in);
                     System.out.println("Please enter your gapp path: ");
                     //gappPath = keyboardGapp.nextLine();
-                    gappPath = "\\\\dcloud.local\\public\\023\\u124307\\Documents\\NetBeansProjects\\AIW2019_P3_G12\\gapp\\MyTwitter.gapp";
+                    gappPath = "\\\\dcloud.local\\public\\023\\u124320\\Documents\\NetBeansProjects\\AIW2019_P3_G12\\gapp\\MyTwitter.gapp";
                 
                 
                     Scanner keyboardTwitterPlugin = new Scanner(System.in);

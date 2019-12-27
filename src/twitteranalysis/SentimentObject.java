@@ -7,7 +7,7 @@ package twitteranalysis;
  * @author u124307
  */
 
-public class Sentiments {
+public class SentimentObject {
 
     int positive;
     int negative;

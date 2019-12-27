@@ -383,7 +383,7 @@
                 <entry>
                   <string>listsURL</string>
                   <gate.util.persistence.PersistenceManager-URLHolder>
-                    <urlString>$relpath$../../../../Downloads/old++/sample_gazetteer/main.def</urlString>
+                    <urlString>$relpath$../resources/sample_gazetteer/main.def</urlString>
                   </gate.util.persistence.PersistenceManager-URLHolder>
                 </entry>
                 <entry>

@@ -5,6 +5,8 @@
  */
 package web;
 
+import com.sun.syndication.io.FeedException;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -15,6 +17,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.stream.Stream;
 //import aiw2019_p2_g12.NewsSummarized;
 import java.util.List;
@@ -22,32 +25,37 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import twitteranalysis.TweetObject;
 import twitteranalysis.TweetTreatment;
-
+import web.SimpleHTMLExtractor;
 /**
  *
  * @author u124320
  */
 public class SimpleHTMLConstructor {
     
+    public static List<String> webTags = Arrays.asList(
+        new String[]{
+            "About", "Hashtags", "UsersMentioned", 
+            "Date", "HeatMap", "CircleMap"
+        }
+    );    
+    
     public void makeWeb() throws FileNotFoundException, UnsupportedEncodingException, IOException{
         String header, body, footer;
         List<TweetObject> tOBody = new ArrayList<TweetObject>();
         OutputStreamWriter osw;
-        TweetTreatment tweetT = new TweetTreatment();
+        SimpleHTMLExtractor bodyExtractor = new SimpleHTMLExtractor();
         File fout=new File("."+File.separator+"web"+File.separator+
                 "index.html");
         FileOutputStream writer=new FileOutputStream(fout);
         osw=new OutputStreamWriter(writer,"utf-8");
         header = getHeader();
-        tOBody =  tweetT.getTweetsPrint();
-                //workWithCorpus(newsList, gappFilePath);
         footer = getFooter();
 
         try {
             osw.append(header+"\n");
             osw.flush();
-
-            //osw.append(tOBody);
+            
+            osw.append(makeBody());
 
             osw.append(footer+"\n");
             osw.flush();
@@ -62,7 +70,7 @@ public class SimpleHTMLConstructor {
     }
     
     public String getHeader(){
-        String filePath = "./output/web/header.html";
+        String filePath = "./web/components/header.html";
         StringBuilder contentBuilder = new StringBuilder();
  
         try (Stream<String> stream = Files.lines( Paths.get(filePath), StandardCharsets.UTF_8)) 
@@ -103,7 +111,7 @@ public class SimpleHTMLConstructor {
     
      
     public String getFooter(){
-        String filePath = "./output/web/footer.html";
+        String filePath = "./web/components/footer.html";
         StringBuilder contentBuilder = new StringBuilder();
  
         try (Stream<String> stream = Files.lines( Paths.get(filePath), StandardCharsets.UTF_8)) 
@@ -118,4 +126,38 @@ public class SimpleHTMLConstructor {
         return contentBuilder.toString();
     
     }
+    
+    public static String makeBody(){
+        SimpleHTMLExtractor htmlExtractor = new SimpleHTMLExtractor();
+        String content = "";
+        
+       
+            
+        for(String tabName : webTags){
+            content +=  htmlExtractor.extractContent(tabName);
+        }
+
+        content += 
+            "        </div>\n" +
+            "    </nav>\n" +
+            "</div>\n" +
+            "<div class=\"contentTabulator\" id=\"About\" style=\"display:none;padding:2%;\">\n" +
+            "    <div class=\"notice\"><h2>About</h2></a>\n" +
+            "        <p>Somos el equipo 12:</p>\n" +
+            "        <br>\n" +
+            "        <p>Formado por: Kevin Romero, Víctor Jordán y Sergi Linares</p>\n" +
+            "    </div>\n" +
+            "</div></body></html>";
+/*
+        for(News nList : newsList){
+            content +=  htmlExtractor.extractSecondContent(nList.getPageLink(), nList.getPageName(), application);
+        }
+*/
+   
+        
+        return content;
+    
+    }
+
+
 }

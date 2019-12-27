@@ -20,7 +20,7 @@ import org.w3c.dom.NodeList;
  */
 public class ExtractSentiment 
 {
-    public static void main( String[] args )
+    public static void main( )
     {
     	ExtractCat();
     	ExtractEn();
@@ -63,7 +63,7 @@ public class ExtractSentiment
     		  System.out.println(negativeCa.size());
     		  System.out.println(neutralCa.size());
     		  
-    		  String ruta = "./dictionaries/pos_cat.lst";
+    		  String ruta = "./resources/sample_gazetteer/pos_cat.lst";
     	        File archivo = new File(ruta);
     	        BufferedWriter bw;
     	        if(archivo.exists()) {
@@ -80,7 +80,7 @@ public class ExtractSentiment
     	        }
     	        bw.close();
     	        
-    	        String ruta2 = "./dictionaries/neg_cat.lst";
+    	        String ruta2 = "./resources/sample_gazetteer/neg_cat.lst";
     	        File archivo2 = new File(ruta2);
     	        BufferedWriter bw2;
     	        if(archivo2.exists()) {
@@ -97,7 +97,7 @@ public class ExtractSentiment
     	        }
     	        bw2.close();
     	        
-    	        String ruta3 = "./dictionaries/neu_cat.lst";
+    	        String ruta3 = "./resources/sample_gazetteer/neu_cat.lst";
     	        File archivo3 = new File(ruta3);
     	        BufferedWriter bw3;
     	        if(archivo3.exists()) {
@@ -123,7 +123,7 @@ public class ExtractSentiment
     	List<String> positiveEn = new ArrayList<String>();
     	List<String> negativeEn = new ArrayList<String>();
     	List<String> neutralEn = new ArrayList<String>();
-    	File file = new File("./dictionaries/senticon.en.xml");
+    	File file = new File("./resources/dictionaries/senticon.en.xml");
 
     	try {
     		  DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -137,8 +137,8 @@ public class ExtractSentiment
 
     			  if(nNode.getNodeType() == Node.ELEMENT_NODE) {
     			    Element eElement = (Element) nNode;
-    			    String fififi = eElement.getAttribute("pol");
-    			    Float result = Float.parseFloat(fififi);	
+    			    String polAttribute = eElement.getAttribute("pol");
+    			    Float result = Float.parseFloat(polAttribute);	
     			    
     			    if(result >= 0.5){
     			    	positiveEn.add(eElement.getTextContent().replace(" ", ""));
@@ -154,7 +154,7 @@ public class ExtractSentiment
     		  System.out.println(negativeEn.size());
     		  System.out.println(neutralEn.size());
     		  
-    		  String ruta = "./dictionaries/pos_en.lst";
+    		  String ruta = "./resources/sample_gazetteer/pos_en.lst";
     	        File archivo = new File(ruta);
     	        BufferedWriter bw;
     	        if(archivo.exists()) {
@@ -171,7 +171,7 @@ public class ExtractSentiment
     	        }
     	        bw.close();
     	        
-    	        String ruta2 = "./dictionaries/neg_en.lst";
+    	        String ruta2 = "./resources/sample_gazetteer/neg_en.lst";
     	        File archivo2 = new File(ruta2);
     	        BufferedWriter bw2;
     	        if(archivo2.exists()) {
@@ -188,7 +188,7 @@ public class ExtractSentiment
     	        }
     	        bw2.close();
     	        
-    	        String ruta3 = "./dictionaries/neu_en.lst";
+    	        String ruta3 = "./resources/sample_gazetteer/neu_en.lst";
     	        File archivo3 = new File(ruta3);
     	        BufferedWriter bw3;
     	        if(archivo3.exists()) {
@@ -214,7 +214,7 @@ public class ExtractSentiment
     	List<String> positiveEs = new ArrayList<String>();
     	List<String> negativeEs = new ArrayList<String>();
     	List<String> neutralEs = new ArrayList<String>();
-    	File file = new File("./dictionaries/senticon.es.xml");
+    	File file = new File("./resources/dictionaries/senticon.es.xml");
 
     	try {
     		  DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -245,7 +245,7 @@ public class ExtractSentiment
     		  System.out.println(negativeEs.size());
     		  System.out.println(neutralEs.size());
     		  
-    		  String ruta = "./dictionaries/pos_es.lst";
+    		  String ruta = "./resources/sample_gazetteer/pos_es.lst";
     	        File archivo = new File(ruta);
     	        BufferedWriter bw;
     	        if(archivo.exists()) {
@@ -262,7 +262,7 @@ public class ExtractSentiment
     	        }
     	        bw.close();
     	        
-    	        String ruta2 = "./dictionaries/neg_es.lst";
+    	        String ruta2 = "./resources/sample_gazetteer/neg_es.lst";
     	        File archivo2 = new File(ruta2);
     	        BufferedWriter bw2;
     	        if(archivo2.exists()) {
@@ -279,7 +279,7 @@ public class ExtractSentiment
     	        }
     	        bw2.close();
     	        
-    	        String ruta3 = "./dictionaries/neu_es.lst";
+    	        String ruta3 = "./resources/sample_gazetteer/neu_es.lst";
     	        File archivo3 = new File(ruta3);
     	        BufferedWriter bw3;
     	        if(archivo3.exists()) {

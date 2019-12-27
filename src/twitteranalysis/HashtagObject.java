@@ -10,17 +10,17 @@ public class HashtagObject {
     
     String nameHashtag;
    
-    Sentiments sentiments = new Sentiments();
+    SentimentObject sentiments = new SentimentObject();
     
     int numberOfPositives;
     int numberOfNegatives;
     int numberOfNeutrals;
 
-    public Sentiments getSentiments() {
+    public SentimentObject getSentiments() {
         return sentiments;
     }
 
-    public void setSentiments(Sentiments sentiments) {
+    public void setSentiments(SentimentObject sentiments) {
         this.sentiments = sentiments;
     }
 
