@@ -153,13 +153,14 @@ public class SimpleHTMLConstructor {
             "    </div>\n" +
             "</div>\n";
         
-        
-/*
-        for(News nList : newsList){
-            content +=  htmlExtractor.extractSecondContent(nList.getPageLink(), nList.getPageName(), application);
-        }
-*/
-   
+        // Extract HastagContent
+        content += htmlExtractor.extractHashtags();
+        // Extract Mentioned Users
+        content += htmlExtractor.extractUsersMentioned();
+        // Extract Mentioned Users
+        content += htmlExtractor.extractDate();
+
+  
         
         return content;
     

@@ -55,6 +55,7 @@ public class TweetTreatment {
     static final int init_numbers = 0;
     
     public static HashMap<String, HashtagObject> hashTable;
+    public static HashMap<String, SentimentObject> dateTable;
 
 
     // Champions hashtags
@@ -184,12 +185,12 @@ public class TweetTreatment {
         //Probar hashmap
         hashTable = new HashMap<String, HashtagObject>();
         hashTable = ClassifierHashtags(finalListTweet,firstHashtags, secondHashtags, thirdHashtags);
-        printHashtagsHashMap(hashTable);
+        //printHashtagsHashMap(hashTable);
         
         //Probar datemap
-       /* HashMap<String, SentimentObject> dateTable = new HashMap<String, SentimentObject>();
+        dateTable = new HashMap<String, SentimentObject>();
         dateTable = ClassifierDate(finalListTweet);
-        printClassifierDate(dateTable);/
+        printClassifierDate(dateTable);
         
         //Probar usersmap
         /*HashMap<String, SentimentObject> usersTable = new HashMap<String, SentimentObject>();
@@ -292,14 +293,12 @@ public class TweetTreatment {
         }
     }
     
-    public HashMap<String, HashtagObject> getHashtagMap(){
+    public HashMap<String, HashtagObject> getHashtagSentimentInfo(){
         return hashTable;
-        /*
-        List<String> tweets = new ArrayList<String>();
-        
-        
-        return tweets;*/
+    }
     
+    public HashMap<String, SentimentObject> getHashtagDateInfo(){
+        return dateTable;
     }
 
     

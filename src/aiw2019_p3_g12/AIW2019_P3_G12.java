@@ -96,7 +96,8 @@ public class AIW2019_P3_G12 {
                     Scanner keyboardGapp = new Scanner(System.in);
                     System.out.println("Please enter your gapp path: ");
                     //gappPath = keyboardGapp.nextLine();
-                    gappPath = "\\\\dcloud.local\\public\\023\\u124307\\Documents\\NetBeansProjects\\AIW2019_P3_G12\\gapp\\MyTwitter.gapp";
+                    //gappPath = "\\\\dcloud.local\\public\\023\\u124307\\Documents\\NetBeansProjects\\AIW2019_P3_G12\\gapp\\MyTwitter.gapp";
+                    gappPath = "\\\\dcloud.local\\public\\023\\u124320\\Documents\\NetBeansProjects\\AIW2019_P3_G12\\gapp\\MyTwitter.gapp";
                 
                 
                     Scanner keyboardTwitterPlugin = new Scanner(System.in);

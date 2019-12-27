@@ -26,6 +26,7 @@ import org.jsoup.select.Elements;
 import java.util.Iterator;
 import java.util.List;
 import twitteranalysis.HashtagObject;
+import twitteranalysis.SentimentObject;
 import twitteranalysis.TweetTreatment;
 
 
@@ -143,25 +144,58 @@ public class SimpleHTMLExtractor {
         return content;
     }
     
-    
+
     public static String extractHashtags(){
         String content = "";
         TweetTreatment tTreatment = new TweetTreatment();
-        HashMap<String, HashtagObject> hashMap = tTreatment.getHashtagMap();
-        
+        HashMap<String, HashtagObject> hashMap = tTreatment.getHashtagSentimentInfo();
+        content += "<div class=\"contentTabulator\" id=\"Hashtags\" style=\"display:none;padding:2%;\">\n<center>";
+            for(Object s: hashMap.keySet()){
+                content += "<div id=\"chart_div" + s + "\" class=\"chart\" ></div>\n";
+            }
+        content += "</center>\n</div>\n\n";
+        content += "<script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>\n";
+
         for(Object s: hashMap.keySet()){
             HashtagObject v = (HashtagObject) hashMap.get(s);
             int positive = v.getSentiments().getPositive();
             int negative = v.getSentiments().getNegative();
             int neutral = v.getSentiments().getNeutral();
-            
-            int addition = positive + negative + neutral;
-
-            content +=  s + " (" + addition +") ->" + " Positive: "+ positive + " Negative: "+negative+ " Neutral: "+neutral;
-        }
         
-    
+        
+        content +=   "<script type='text/javascript'>\n" +
+                    "\n" +
+                    "      google.charts.load('current', {'packages':['corechart']});\n" +
+                    "\n" +
+                    "      google.charts.setOnLoadCallback(drawChart);\n" +
+                    "\n" +
+                    "      function drawChart() {\n" +
+                    "\n" +
+                    "        var data = new google.visualization.DataTable();\n" +
+                    "        data.addColumn('string', 'Type');\n" +
+                    "        data.addColumn('number', 'Quantity');\n" +
+                    "        data.addRows([\n" +
+                    "          ['Positive', "+ positive + "],\n" +
+                    "          ['Negative', "+ negative + "],\n" +
+                    "          ['Neutrals', "+ neutral + "],\n" +
+                    "        ]);\n" +
+                    "\n" +
+                    "        // Set chart options\n" +
+                    "        var options = {'title':'"+ s + "',\n" +
+                    "                       'width':400,\n" +
+                    "                       'height':300};\n" +
+                    "\n" +
+                    "        // Instantiate and draw our chart, passing in some options.\n" +
+                    "        var chart = new google.visualization.PieChart(document.getElementById('chart_div"+s+"'));\n" +
+                    "        chart.draw(data, options);\n" +
+                    "      }\n" +
+                    "    </script>\n";
+        
+        }
         return content;
+
+    
+    
     }
     
         
@@ -173,7 +207,54 @@ public class SimpleHTMLExtractor {
         
     public static String extractDate(){
     
-        return "";
+        String content = "";
+        TweetTreatment tTreatment = new TweetTreatment();
+        HashMap<String, SentimentObject> hashMapDate = tTreatment.getHashtagDateInfo();
+        content += "<div class=\"contentTabulator\" id=\"Date\" style=\"display:none;padding:2%;\">\n<center>";
+            for(Object s: hashMapDate.keySet()){
+                content += "<div id=\"chart_div" + s + "\" class=\"chart\" ></div>\n";
+            }
+        content += "</center>\n</div>\n\n";
+        content += "<script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>\n";
+
+        for(Object s: hashMapDate.keySet()){
+            SentimentObject v = (SentimentObject) hashMapDate.get(s);
+            int positive = v.getPositive();
+            int negative = v.getNegative();
+            int neutral = v.getNeutral();
+        
+        
+        content +=   "<script type='text/javascript'>\n" +
+                    "\n" +
+                    "      google.charts.load('current', {'packages':['corechart']});\n" +
+                    "\n" +
+                    "      google.charts.setOnLoadCallback(drawChart);\n" +
+                    "\n" +
+                    "      function drawChart() {\n" +
+                    "\n" +
+                    "        var data = new google.visualization.DataTable();\n" +
+                    "        data.addColumn('string', 'Type');\n" +
+                    "        data.addColumn('number', 'Quantity');\n" +
+                    "        data.addRows([\n" +
+                    "          ['Positive', "+ positive + "],\n" +
+                    "          ['Negative', "+ negative + "],\n" +
+                    "          ['Neutrals', "+ neutral + "],\n" +
+                    "        ]);\n" +
+                    "\n" +
+                    "        // Set chart options\n" +
+                    "        var options = {'title':'"+ s + "',\n" +
+                    "                       'width':400,\n" +
+                    "                       'height':300};\n" +
+                    "\n" +
+                    "        // Instantiate and draw our chart, passing in some options.\n" +
+                    "        var chart = new google.visualization.PieChart(document.getElementById('chart_div"+s+"'));\n" +
+                    "        chart.draw(data, options);\n" +
+                    "      }\n" +
+                    "    </script>\n";
+        
+        }
+        return content;
+
     }
     
         
